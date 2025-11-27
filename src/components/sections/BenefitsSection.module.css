@@ -1,0 +1,167 @@
+.section {
+  background: #ffffff;
+  padding: 3rem 0 3.5rem;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.headline {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 130%;
+  letter-spacing: 0;
+  color: #f90303;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.subheadline {
+  font-family: var(--font-ui);
+  font-weight: 510;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.02em;
+  color: #3d3d3d;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  justify-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  background: #ffefef;
+  border-radius: 13.5px;
+  padding: 20px 8px;
+  text-align: center;
+  max-width: 340px;
+  width: 100%;
+  min-height: 220px;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+.card:nth-child(1) {
+  animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.card:nth-child(2) {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.card:nth-child(3) {
+  animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+.card:nth-child(4) {
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.card:nth-child(5) {
+  animation: fadeInUp 0.8s ease-out 0.7s forwards;
+}
+
+.card:nth-child(6) {
+  animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.cardTitle {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  color: #3d3d3d;
+}
+
+.cardBody {
+  font-family: var(--font-ui);
+  font-weight: 510;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  color: #3d3d3d;
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 0 2.5rem;
+  }
+
+  .headline {
+    font-size: 28px;
+  }
+
+  .subheadline {
+    font-size: 16px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 200px;
+    padding: 18px 8px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardBody {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headline,
+  .subheadline,
+  .card {
+    animation: none;
+    opacity: 1;
+  }
+}
+

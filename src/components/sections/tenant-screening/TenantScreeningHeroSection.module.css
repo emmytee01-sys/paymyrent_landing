@@ -1,0 +1,184 @@
+.section {
+  padding: 59px 0;
+  background: #FFFFFF;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 144px;
+}
+
+.copy {
+  flex: 1;
+  max-width: 652px;
+}
+
+.heading {
+  font-family: 'SF Compact Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 68px;
+  line-height: 80px;
+  letter-spacing: 4px;
+  color: #3D3D3D;
+  margin: 0 0 1rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.description {
+  font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0.03em;
+  color: #3D3D3D;
+  margin: 0 0 2rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.ctaButton {
+  background: #F90303;
+  color: #FFFFFF;
+  border: none;
+  padding: 11px 18px;
+  font-size: 20px;
+  font-weight: 510;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-width: 275px;
+}
+
+.visual {
+  flex: 1;
+  position: relative;
+  max-width: 579px;
+  height: 506px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInRight 1s ease-out 0.3s forwards, scaleIn 1s ease-out 0.3s forwards;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+
+  .heading {
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: 2px;
+  }
+
+  .description {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  .visual {
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaButton {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .heading {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: 1px;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .visual {
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .description,
+  .buttonGroup,
+  .visual {
+    animation: none;
+    opacity: 1;
+  }
+}
+

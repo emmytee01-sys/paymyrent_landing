@@ -1,0 +1,149 @@
+.section {
+  padding: 2.5rem 0;
+  background: #FFFDFC;
+  border: 1px solid #3D3D3D;
+  overflow: hidden;
+}
+
+.content {
+  max-width: 1728px;
+  margin: 0 auto;
+  padding: 0 144px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 130%;
+  color: #3D3D3D;
+  margin: 0 0 3rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  max-width: 443px;
+  opacity: 0;
+}
+
+.step:nth-child(1) {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.step:nth-child(2) {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.step:nth-child(3) {
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+.stepNumber {
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 130%;
+  color: #3D3D3D;
+  margin-bottom: 0.5rem;
+}
+
+.stepLine {
+  width: 190px;
+  height: 6px;
+  background: rgba(249, 3, 3, 0.7);
+  transform: rotate(90deg);
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+
+.stepText {
+  font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.03em;
+  color: #3D3D3D;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 0 2rem;
+  }
+
+  .heading {
+    font-size: 40px;
+    margin-bottom: 2rem;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .step {
+    max-width: 100%;
+  }
+
+  .stepLine {
+    transform: rotate(0deg);
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .stepNumber {
+    font-size: 40px;
+  }
+
+  .stepText {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading,
+  .step {
+    animation: none;
+    opacity: 1;
+  }
+}
+
