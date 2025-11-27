@@ -17,7 +17,7 @@ export function TenantScreeningHeroSection() {
           </div>
         </div>
         <div className={styles.visual}>
-          <img src="/assets/screening_Profile.png" alt="Tenant Screening illustration" className={styles.heroImage} />
+          <img src="/assets/tenant22.png" alt="Tenant Screening illustration" className={styles.heroImage} />
         </div>
       </Container>
     </section>

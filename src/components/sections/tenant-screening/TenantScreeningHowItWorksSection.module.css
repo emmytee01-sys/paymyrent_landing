@@ -1,12 +1,12 @@
 .section {
-  padding: 2.5rem 0;
+  padding: 4rem 0;
   background: #FFFDFC;
   border: 1px solid #3D3D3D;
   overflow: hidden;
 }
 
 .content {
-  max-width: 1728px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 144px;
   display: flex;
@@ -20,7 +20,7 @@
   font-size: 52px;
   line-height: 130%;
   color: #3D3D3D;
-  margin: 0 0 3rem;
+  margin: 0 0 4rem;
   text-align: center;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
@@ -29,17 +29,17 @@
 .steps {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   gap: 2rem;
+  position: relative;
 }
 
 .step {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   position: relative;
-  max-width: 443px;
   opacity: 0;
 }
 
@@ -55,32 +55,71 @@
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2rem;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(61, 61, 61, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stepCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 30px rgba(61, 61, 61, 0.12);
+}
+
 .stepNumber {
   font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
-  font-size: 52px;
-  line-height: 130%;
-  color: #3D3D3D;
-  margin-bottom: 0.5rem;
-}
-
-.stepLine {
-  width: 190px;
-  height: 6px;
-  background: rgba(249, 3, 3, 0.7);
-  transform: rotate(90deg);
-  margin-bottom: 1rem;
-  margin-left: 0;
+  font-size: 64px;
+  line-height: 1;
+  color: #F90303;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(249, 3, 3, 0.1);
+  border-radius: 50%;
 }
 
 .stepText {
   font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 400;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 36px;
   letter-spacing: 0.03em;
   color: #3D3D3D;
   margin: 0;
+}
+
+.connector {
+  position: absolute;
+  right: calc(-1rem - 1px);
+  top: 50px;
+  width: calc(2rem + 2px);
+  height: 4px;
+  background: linear-gradient(90deg, rgba(249, 3, 3, 0.4), rgba(249, 3, 3, 0.2));
+  z-index: 1;
+  display: block;
+}
+
+.connector::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid rgba(249, 3, 3, 0.4);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 @media (max-width: 1024px) {
@@ -90,40 +129,55 @@
 
   .heading {
     font-size: 40px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   .steps {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+    align-items: stretch;
   }
 
   .step {
-    max-width: 100%;
+    width: 100%;
   }
 
-  .stepLine {
-    transform: rotate(0deg);
-    width: 100px;
-    margin-bottom: 1rem;
+  .stepCard {
+    padding: 1.5rem;
+  }
+
+  .connector {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 2rem 0;
+    padding: 3rem 0;
+  }
+
+  .content {
+    padding: 0 1.5rem;
   }
 
   .heading {
     font-size: 32px;
+    margin-bottom: 2rem;
+  }
+
+  .stepCard {
+    padding: 1.25rem;
   }
 
   .stepNumber {
-    font-size: 40px;
+    font-size: 48px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
   }
 
   .stepText {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
   }
 }

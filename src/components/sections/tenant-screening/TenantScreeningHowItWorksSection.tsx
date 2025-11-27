@@ -8,19 +8,24 @@ export function TenantScreeningHowItWorksSection() {
         <h2 className={styles.heading}>How our landlord platform works</h2>
         <div className={styles.steps}>
           <div className={styles.step}>
-            <div className={styles.stepNumber}>1</div>
-            <div className={styles.stepLine}></div>
-            <p className={styles.stepText}>Request for a tenant screening.</p>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>1</div>
+              <p className={styles.stepText}>Request for a tenant screening.</p>
+            </div>
+            <div className={styles.connector}></div>
           </div>
           <div className={styles.step}>
-            <div className={styles.stepNumber}>2</div>
-            <div className={styles.stepLine}></div>
-            <p className={styles.stepText}>Give us details of the tenant and leave the rest to us.</p>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>2</div>
+              <p className={styles.stepText}>Give us details of the tenant and leave the rest to us.</p>
+            </div>
+            <div className={styles.connector}></div>
           </div>
           <div className={styles.step}>
-            <div className={styles.stepNumber}>3</div>
-            <div className={styles.stepLine}></div>
-            <p className={styles.stepText}>Get results and make informed decision.</p>
+            <div className={styles.stepCard}>
+              <div className={styles.stepNumber}>3</div>
+              <p className={styles.stepText}>Get results and make informed decision.</p>
+            </div>
           </div>
         </div>
       </Container>
