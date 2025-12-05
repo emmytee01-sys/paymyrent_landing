@@ -1,9 +1,12 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   background: transparent;
   padding-top: 1.5rem;
+  width: 100%;
 }
 
 .shell {
@@ -157,6 +160,11 @@
   gap: 1rem;
 }
 
+.loginButtonLink {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .loginButton {
   min-width: 88px;
   height: 46px;
@@ -169,6 +177,11 @@
   font-size: 20px;
   line-height: 24px;
   padding: 11px 18px;
+}
+
+.ctaButtonLink {
+  text-decoration: none;
+  display: inline-block;
 }
 
 .ctaButton {
