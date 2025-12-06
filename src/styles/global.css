@@ -42,13 +42,6 @@ button {
 }
 
 main {
-  padding-top: 124px; /* Account for fixed header: 1.5rem padding + 100px min-height */
   flex: 1;
-}
-
-@media (max-width: 768px) {
-  main {
-    padding-top: 100px; /* Reduced padding for mobile */
-  }
 }
 

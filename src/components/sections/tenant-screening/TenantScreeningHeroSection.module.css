@@ -43,8 +43,8 @@
 
 .buttonGroup {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
@@ -53,17 +53,18 @@
   background: #F90303;
   color: #FFFFFF;
   border: none;
-  padding: 11px 18px;
-  font-size: 20px;
+  padding: 10px 16px;
+  font-size: 16px;
   font-weight: 510;
-  border-radius: 15px;
+  border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  height: 60px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  min-width: 275px;
+  min-width: auto;
+  flex: 0 1 auto;
 }
 
 .visual {
@@ -109,13 +110,12 @@
   }
 
   .buttonGroup {
-    flex-direction: column;
-    width: 100%;
+    flex-wrap: wrap;
   }
 
   .ctaButton {
-    width: 100%;
-    min-width: auto;
+    flex: 1;
+    min-width: 200px;
   }
 }
 

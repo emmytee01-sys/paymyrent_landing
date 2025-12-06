@@ -10,7 +10,10 @@ export function ThirteenthMonthSection() {
         </div>
 
         <div className={styles.copy}>
-          <h2 className={styles.heading}>13th Month Savings</h2>
+          <div className={styles.headingWrapper}>
+            <h2 className={styles.heading}>13th Month Savings</h2>
+            <span className={styles.comingSoon}>Coming Soon!</span>
+          </div>
           <p className={styles.body}>
             Double your savings power! Earn a 13th month bonus equal to your monthly savings amount. Example, save
             N200,000 monthly and receive N200,000 extra – that&apos;s a total of N2,400,000 in savings and bonus at the end

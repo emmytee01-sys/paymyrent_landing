@@ -121,14 +121,10 @@ export function Header() {
         </nav>
 
         <div className={`${styles.actions} ${mobileMenuOpen ? styles.actionsOpen : ''}`}>
-          <a href="http://localhost:3000/login" className={styles.loginButtonLink}>
-            <Button variant="secondary" className={styles.loginButton}>
-              Login
-            </Button>
-          </a>
-          <a href="http://localhost:3000/register" className={styles.ctaButtonLink}>
-            <Button className={styles.ctaButton}>Create free account</Button>
-          </a>
+          <Button variant="secondary" className={styles.loginButton} disabled>
+            Login
+          </Button>
+          <Button className={styles.ctaButton} disabled>Create free account</Button>
         </div>
       </Container>
     </header>

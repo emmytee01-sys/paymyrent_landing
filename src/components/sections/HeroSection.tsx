@@ -21,11 +21,21 @@ export function HeroSection() {
           </p>
 
           <div className={styles.storeActions}>
-            <a className={styles.storeButton} href="#">
+            <a 
+              className={styles.storeButton} 
+              href="https://play.google.com/store/apps/details?id=com.paymyrentng.paymyrent"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src="/assets/googleplay.png" alt="Get it on Google Play" />
             </a>
 
-            <a className={styles.storeButton} href="#">
+            <a 
+              className={styles.storeButton} 
+              href="https://apps.apple.com/app/id1494298883"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img src="/assets/appstore.png" alt="Download on the App Store" />
             </a>
           </div>
