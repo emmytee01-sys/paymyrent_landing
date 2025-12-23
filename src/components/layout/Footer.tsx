@@ -63,8 +63,8 @@ export function Footer() {
         <div className={`${styles.column} ${styles.contact}`}>
           <h3 className={styles.columnTitle}>Contact Us:</h3>
           <ul className={styles.linkList}>
-            <li><a href="tel:+2348040305900" className={styles.link}>(234) 8040305900</a></li>
-            <li><a href="mailto:jhnngjd@paymyrent.com" className={styles.link}>jhnngjd@paymyrent.com</a></li>
+            <li><a href="tel:+2349034800393" className={styles.link}>+2349034800393</a></li>
+            <li><a href="mailto:support@paymyrent.ng" className={styles.link}>support@paymyrent.ng</a></li>
             <li><a href="#login" className={styles.link}>Login</a></li>
           </ul>
         </div>
