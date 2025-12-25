@@ -1,22 +1,50 @@
+import { Link } from 'react-router-dom'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import styles from './SearchPropertiesSection.module.css'
 
-export function SearchPropertiesSection() {
+interface SearchPropertiesSectionProps {
+  heading?: string
+  body?: string
+  buttonText?: string
+  buttonLink?: string
+  image?: string
+  imageAlt?: string
+}
+
+export function SearchPropertiesSection({
+  heading = 'Search Properties',
+  body,
+  buttonText = 'Search Properties',
+  buttonLink,
+  image = '/assets/propty-removebg-preview.png',
+  imageAlt = 'Search properties illustration'
+}: SearchPropertiesSectionProps = {}) {
+  const defaultBody = (
+    'Say goodbye to agency and legal fees and hello to stress-free renting with Paymyrent - your one-stop platform to find and rent your dream apartment!'
+  )
+
+  const buttonElement = buttonLink ? (
+    <Link to={buttonLink}>
+      <Button className={styles.searchButton}>{buttonText}</Button>
+    </Link>
+  ) : (
+    <Button className={styles.searchButton}>{buttonText}</Button>
+  )
+
   return (
     <section className={styles.section} id="search-properties">
       <Container className={styles.inner}>
         <div className={styles.copy}>
-          <h2 className={styles.heading}>Search Properties</h2>
+          <h2 className={styles.heading}>{heading}</h2>
           <p className={styles.body}>
-            Say goodbye to agency and legal fees and hello to stress-free renting with Paymyrent - your one-stop platform to
-            find and rent your dream apartment!
+            {body ?? defaultBody}
           </p>
-          <Button className={styles.searchButton}>Search Properties</Button>
+          {buttonElement}
         </div>
 
         <div className={styles.visual}>
-          <img className={styles.image} src="/assets/propty-removebg-preview.png" alt="Search properties illustration" />
+          <img className={styles.image} src={image} alt={imageAlt} />
         </div>
       </Container>
     </section>

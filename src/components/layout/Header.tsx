@@ -16,7 +16,7 @@ const navItems = [
       { label: 'Tenant screening', href: '/tenant-screening' },
     ]
   },
-  { label: 'Investment', hasDropdown: true, href: '#investment' },
+  { label: 'Rent Loans', hasDropdown: false, href: '/rent-loans' },
 ]
 
 export function Header() {

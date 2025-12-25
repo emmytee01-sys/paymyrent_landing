@@ -2,20 +2,38 @@ import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import styles from './InvestmentSection.module.css'
 
-export function InvestmentSection() {
+interface InvestmentSectionProps {
+  heading?: string
+  body?: string
+  buttonText?: string
+  image?: string
+  imageAlt?: string
+}
+
+export function InvestmentSection({
+  heading = 'Investment and Earn in Dollars',
+  body,
+  buttonText = 'Invest Now',
+  image = '/assets/investt-removebg-preview.png',
+  imageAlt = 'Investment illustration'
+}: InvestmentSectionProps = {}) {
+  const defaultBody = (
+    'Co own profitable business in UK, US and Canada with as low as N25,000. Earn monthly profits In Pounds $ Dollars.'
+  )
+
   return (
     <section className={styles.section} id="investment">
       <Container className={styles.inner}>
         <div className={styles.copy}>
-          <h2 className={styles.heading}>Investment and Earn in Dollars</h2>
+          <h2 className={styles.heading}>{heading}</h2>
           <p className={styles.body}>
-            Co own profitable business in UK, US and Canada with as low as N25,000. Earn monthly profits In Pounds $ Dollars.
+            {body ?? defaultBody}
           </p>
-          <Button className={styles.investButton}>Invest Now</Button>
+          <Button className={styles.investButton}>{buttonText}</Button>
         </div>
 
         <div className={styles.visual}>
-          <img className={styles.image} src="/assets/investt-removebg-preview.png" alt="Investment illustration" />
+          <img className={styles.image} src={image} alt={imageAlt} />
         </div>
       </Container>
     </section>

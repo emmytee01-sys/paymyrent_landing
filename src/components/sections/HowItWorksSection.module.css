@@ -57,11 +57,19 @@
   gap: 0.9rem;
 }
 
+.stepHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .stepNumber {
   font-family: 'SF Pro Rounded', var(--font-ui);
   font-weight: 700;
   font-size: 46.8px;
   line-height: 130%;
+  flex-shrink: 0;
 }
 
 .stepBody {
@@ -70,6 +78,11 @@
   font-size: 23.4px;
   line-height: 32.4px;
   letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.stepBodyBold {
+  font-weight: 700;
 }
 
 @keyframes fadeInUp {

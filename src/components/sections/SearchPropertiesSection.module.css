@@ -38,6 +38,11 @@
   animation: fadeInLeft 0.8s ease-out 0.2s forwards;
 }
 
+.copy > a {
+  display: inline-block;
+  text-decoration: none;
+}
+
 .searchButton {
   font-family: 'Inter', var(--font-ui);
   font-weight: 600;

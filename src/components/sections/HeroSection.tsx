@@ -1,7 +1,24 @@
+import React from 'react'
 import styles from './HeroSection.module.css'
 import { Container } from '../ui/Container'
 
-export function HeroSection() {
+interface HeroSectionProps {
+  heroImage?: string
+  headingLine1?: React.ReactNode
+  headingLine2?: React.ReactNode
+  description?: string
+}
+
+export function HeroSection({ 
+  heroImage = '/assets/herowoman.png',
+  headingLine1,
+  headingLine2,
+  description
+}: HeroSectionProps = {}) {
+  const defaultHeadingLine1 = <>The <span className={styles.highlight}>savings platform</span></>
+  const defaultHeadingLine2 = <>designed just for <span className={styles.highlight}>you</span></>
+  const defaultDescription = "Your savings, your way! Set your daily, weekly, or monthly savings goal and let our platform do the rest. Watch your progress unfold as you effortlessly build towards your rent, one savings step at a time."
+
   return (
     <section className={styles.hero} id="top">
       <Container className={styles.content}>
@@ -9,15 +26,14 @@ export function HeroSection() {
           {/* Group 11521 */}
           <h1 className={styles.heading}>
             <span className={styles.headingLine}>
-              The <span className={styles.highlight}>savings platform</span>
+              {headingLine1 ?? defaultHeadingLine1}
             </span>
             <span className={styles.headingLine}>
-              designed just for <span className={styles.highlight}>you</span>
+              {headingLine2 ?? defaultHeadingLine2}
             </span>
           </h1>
           <p className={styles.description}>
-            Your savings, your way! Set your daily, weekly, or monthly savings goal and let our platform do the rest.
-            Watch your progress unfold as you effortlessly build towards your rent, one savings step at a time.
+            {description ?? defaultDescription}
           </p>
 
           <div className={styles.storeActions}>
@@ -43,7 +59,7 @@ export function HeroSection() {
 
         <div className={styles.visual}>
           <div className={styles.visualBase}>
-            <img className={styles.heroImage} src="/assets/herowoman.png" alt="Happy saver holding keys and phone" />
+            <img className={styles.heroImage} src={heroImage} alt="Happy saver holding keys and phone" />
           </div>
         </div>
       </Container>
