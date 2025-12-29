@@ -39,17 +39,19 @@
 }
 
 .investButton {
-  width: 207px;
+  width: auto;
+  min-width: 207px;
   height: 54px;
   border-radius: 13.5px;
   background: #000000 !important;
   border: 1px solid #000000 !important;
   color: #ffffff !important;
   font-family: var(--font-ui);
-  padding: 0;
+  padding: 0 1.8rem;
   box-shadow: var(--shadow-soft);
   opacity: 0;
   animation: fadeInRight 0.8s ease-out 0.4s forwards;
+  white-space: nowrap;
 }
 
 .investButton:hover {

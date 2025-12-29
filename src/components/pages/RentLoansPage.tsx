@@ -18,9 +18,9 @@ export function RentLoansPage() {
   return (
     <>
       <HeroSection 
-        heroImage="/assets/rentt.jpeg"
-        headingLine1={<><span className={heroStyles.highlight}>Rent Loan</span>,</>}
-        headingLine2={<>designed just for <span className={heroStyles.highlight}>you</span></>}
+        heroImage="/assets/rentt.png"
+        headingLine1={<><span className={heroStyles.highlight}>The Rent Loan</span>,</>}
+        headingLine2={<> designed just for <span className={heroStyles.highlight}>you</span></>}
         description="Save consistently for 6 months and qualify for a loan to help cover your rent when it's due."
       />
       <AutomatedSavingsSection 

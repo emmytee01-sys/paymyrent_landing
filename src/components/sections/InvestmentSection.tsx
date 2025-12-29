@@ -24,16 +24,16 @@ export function InvestmentSection({
   return (
     <section className={styles.section} id="investment">
       <Container className={styles.inner}>
+        <div className={styles.visual}>
+          <img className={styles.image} src={image} alt={imageAlt} />
+        </div>
+
         <div className={styles.copy}>
           <h2 className={styles.heading}>{heading}</h2>
           <p className={styles.body}>
             {body ?? defaultBody}
           </p>
           <Button className={styles.investButton}>{buttonText}</Button>
-        </div>
-
-        <div className={styles.visual}>
-          <img className={styles.image} src={image} alt={imageAlt} />
         </div>
       </Container>
     </section>
