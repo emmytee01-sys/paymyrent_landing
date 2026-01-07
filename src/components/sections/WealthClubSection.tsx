@@ -1,24 +1,33 @@
+import type { ReactNode } from 'react'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import styles from './WealthClubSection.module.css'
 
 interface WealthClubSectionProps {
   heading?: string
-  body?: string
-  buttonText?: string
+  body?: ReactNode
+  brochureLink?: string
+  telegramLink?: string
   image?: string
   imageAlt?: string
 }
 
 export function WealthClubSection({
-  heading = 'Join the Paymyrent Wealth Club',
+  heading = 'Join the ₦20,000 Investment Club',
   body,
-  buttonText = 'Join Now',
+  brochureLink,
+  telegramLink,
   image = '/assets/rent_reporting.svg',
   imageAlt = 'Wealth Club illustration'
 }: WealthClubSectionProps = {}) {
   const defaultBody = (
-    'Join a community of investors building wealth through hotels, residential developments, land banking, and plantation ownership. Make monthly contributions and participate in real estate projects designed to appreciate over time and deliver long-term financial growth.'
+    <>
+      Join a community of investors building wealth together through land ownership and plantation investment.
+      <br /><br />
+      Invest ₦20,000 monthly for 24 months and secure one plot of farmland at The Palms Plantation.
+      <br /><br />
+      We manage and farm your land for you, while you earn annual income from year 5 to year 35 — plus long-term land appreciation.
+    </>
   )
 
   return (
@@ -29,7 +38,34 @@ export function WealthClubSection({
           <p className={styles.body}>
             {body ?? defaultBody}
           </p>
-          <Button className={styles.joinButton}>{buttonText}</Button>
+          <div className={styles.buttonContainer}>
+            {brochureLink && (
+              <a 
+                href={brochureLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.buttonLink}
+              >
+                <Button className={styles.joinButton}>Download the brochure</Button>
+              </a>
+            )}
+            {telegramLink && (
+              <a 
+                href={telegramLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.buttonLink}
+              >
+                <Button className={styles.joinButton}>Join Telegram community</Button>
+              </a>
+            )}
+            {!brochureLink && !telegramLink && (
+              <>
+                <Button className={styles.joinButton}>Download the brochure</Button>
+                <Button className={styles.joinButton}>Join Telegram community</Button>
+              </>
+            )}
+          </div>
         </div>
 
         <div className={styles.visual}>

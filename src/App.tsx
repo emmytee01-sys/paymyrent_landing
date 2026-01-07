@@ -19,6 +19,10 @@ import { LandlordPage } from './components/pages/LandlordPage'
 import { PropertyManagementPage } from './components/pages/PropertyManagementPage'
 import { TenantScreeningPage } from './components/pages/TenantScreeningPage'
 import { RentLoansPage } from './components/pages/RentLoansPage'
+import { InvestmentPage } from './components/pages/InvestmentPage'
+import { PrivacyPolicyPage } from './components/pages/PrivacyPolicyPage'
+import { TermsOfUsePage } from './components/pages/TermsOfUsePage'
+import { EmployerPartnershipPage } from './components/pages/EmployerPartnershipPage'
 
 function HomePage() {
   return (
@@ -61,6 +65,10 @@ function App() {
             <Route path="/property-management" element={<PropertyManagementPage />} />
             <Route path="/tenant-screening" element={<TenantScreeningPage />} />
             <Route path="/rent-loans" element={<RentLoansPage />} />
+            <Route path="/investment" element={<InvestmentPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfUsePage />} />
+            <Route path="/employer-partnership" element={<EmployerPartnershipPage />} />
           </Routes>
         </main>
       </div>

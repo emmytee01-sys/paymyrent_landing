@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -54,8 +55,8 @@ export function Footer() {
         <div className={`${styles.column} ${styles.legal}`}>
           <h3 className={styles.columnTitle}>Legal</h3>
           <ul className={styles.linkList}>
-            <li><a href="#terms" className={styles.link}>Terms</a></li>
-            <li><a href="#privacy" className={styles.link}>Privacy</a></li>
+            <li><Link to="/terms" className={styles.link}>Terms</Link></li>
+            <li><Link to="/privacy" className={styles.link}>Privacy</Link></li>
             <li><a href="#security" className={styles.link}>Security</a></li>
           </ul>
         </div>

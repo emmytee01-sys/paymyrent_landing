@@ -14,7 +14,7 @@ export function TenantEvictionSection() {
           <p className={styles.description}>
             With our property management service, you get to enjoy Free tenant eviction. This comes at no fee to you the landlord. All legal and court process is handled by us.
           </p>
-          <Button className={styles.ctaButton}>Learn More</Button>
+          <Button className={styles.ctaButton}>Get Started</Button>
         </div>
       </Container>
     </section>

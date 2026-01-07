@@ -1,5 +1,4 @@
 import { Container } from '../../ui/Container'
-import { Button } from '../../ui/Button'
 import styles from './PropertyMaintenanceSection.module.css'
 
 export function PropertyMaintenanceSection() {
@@ -14,7 +13,6 @@ export function PropertyMaintenanceSection() {
           <p className={styles.description}>
             We work with a group of skilled professionals to ensure that repairs and maintenance on your properties are completed in a timely manner with minimal interruption to your tenants' day-to-day
           </p>
-          <Button className={styles.ctaButton}>Learn More</Button>
         </div>
       </Container>
     </section>

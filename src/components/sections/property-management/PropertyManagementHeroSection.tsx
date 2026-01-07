@@ -17,7 +17,7 @@ export function PropertyManagementHeroSection() {
         </div>
         <div className={styles.visual}>
           <div className={styles.visualContent}>
-            <img src="/assets/heromanage.png" alt="Property Management illustration" className={styles.heroImage} />
+            <img src="/assets/landlord.png" alt="Property Management illustration" className={styles.heroImage} />
           </div>
         </div>
       </Container>

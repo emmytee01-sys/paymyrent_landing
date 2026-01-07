@@ -1,5 +1,4 @@
 import { Container } from '../../ui/Container'
-import { Button } from '../../ui/Button'
 import styles from './RentCollectionSection.module.css'
 
 export function RentCollectionSection() {
@@ -14,7 +13,6 @@ export function RentCollectionSection() {
           <p className={styles.description}>
             Didn't screen your tenants initially? No worries! Request a tenant screening today to verify employment, business location, and other crucial details. It's never too late to get the information you need.
           </p>
-          <Button className={styles.ctaButton}>Learn More</Button>
         </div>
       </Container>
     </section>

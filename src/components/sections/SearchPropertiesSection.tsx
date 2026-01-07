@@ -8,6 +8,7 @@ interface SearchPropertiesSectionProps {
   body?: string
   buttonText?: string
   buttonLink?: string
+  onButtonClick?: () => void
   image?: string
   imageAlt?: string
 }
@@ -17,6 +18,7 @@ export function SearchPropertiesSection({
   body,
   buttonText = 'Search Properties',
   buttonLink,
+  onButtonClick,
   image = '/assets/propty-removebg-preview.png',
   imageAlt = 'Search properties illustration'
 }: SearchPropertiesSectionProps = {}) {
@@ -24,13 +26,22 @@ export function SearchPropertiesSection({
     'Say goodbye to agency and legal fees and hello to stress-free renting with Paymyrent - your one-stop platform to find and rent your dream apartment!'
   )
 
-  const buttonElement = buttonLink ? (
-    <Link to={buttonLink}>
+  let buttonElement
+  if (buttonLink) {
+    buttonElement = (
+      <Link to={buttonLink}>
+        <Button className={styles.searchButton}>{buttonText}</Button>
+      </Link>
+    )
+  } else if (onButtonClick) {
+    buttonElement = (
+      <Button className={styles.searchButton} onClick={onButtonClick}>{buttonText}</Button>
+    )
+  } else {
+    buttonElement = (
       <Button className={styles.searchButton}>{buttonText}</Button>
-    </Link>
-  ) : (
-    <Button className={styles.searchButton}>{buttonText}</Button>
-  )
+    )
+  }
 
   return (
     <section className={styles.section} id="search-properties">

@@ -4,18 +4,16 @@ import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import styles from './Header.module.css'
 
-const navItems = [
+type NavItem = {
+  label: string
+  hasDropdown: boolean
+  href: string
+  dropdownItems?: Array<{ label: string; href: string }>
+}
+
+const navItems: NavItem[] = [
   { label: 'Savings', hasDropdown: false, href: '/' },
-  { 
-    label: 'Landlord', 
-    hasDropdown: true, 
-    href: '/landlord',
-    dropdownItems: [
-      { label: 'Landlord', href: '/landlord' },
-      { label: 'Property management', href: '/property-management' },
-      { label: 'Tenant screening', href: '/tenant-screening' },
-    ]
-  },
+  { label: 'Landlord', hasDropdown: false, href: '/property-management' },
   { label: 'Rent Loans', hasDropdown: false, href: '/rent-loans' },
 ]
 
@@ -28,7 +26,7 @@ export function Header() {
     setOpenDropdown(openDropdown === label ? null : label)
   }
 
-  const handleNavClick = (item: typeof navItems[0]) => {
+  const handleNavClick = (item: NavItem) => {
     if (item.hasDropdown) {
       // Always toggle dropdown when clicking the button
       handleDropdownToggle(item.label)

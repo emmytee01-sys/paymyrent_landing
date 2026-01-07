@@ -11,7 +11,7 @@ export function EffectiveAdvertisementSection() {
           <p className={styles.description}>
             We will take professional photos of your unit and advertise it on all of the main rental sites, including our site and our private network that we have built throughout the years. With us, your property get rented in no time.
           </p>
-          <Button className={styles.ctaButton}>Screen existing tenant</Button>
+          <Button className={styles.ctaButton}>List property</Button>
         </div>
         <div className={styles.visual}>
           <img src="/assets/effective.png" alt="Effective Advertisement illustration" className={styles.adImage} />

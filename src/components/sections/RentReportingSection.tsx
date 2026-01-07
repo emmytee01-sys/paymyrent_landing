@@ -10,6 +10,7 @@ interface RentReportingSectionProps {
   buttonLink?: string
   image?: string
   imageAlt?: string
+  showComingSoon?: boolean
 }
 
 export function RentReportingSection({
@@ -18,7 +19,8 @@ export function RentReportingSection({
   buttonText = 'Get started',
   buttonLink,
   image = '/assets/Payment report.svg',
-  imageAlt = 'Rent reporting illustration'
+  imageAlt = 'Rent reporting illustration',
+  showComingSoon = true
 }: RentReportingSectionProps = {}) {
   const defaultBody = (
     'By reporting your rent to major credit bureaus in Nigeria, you build a verified rent history that can improve your credit profile, strengthen your access to loans, and support better housing and financial opportunities over time.'
@@ -40,7 +42,10 @@ export function RentReportingSection({
         </div>
 
         <div className={styles.copy}>
-          <h2 className={styles.heading}>{heading}</h2>
+          <div className={styles.headingWrapper}>
+            <h2 className={styles.heading}>{heading}</h2>
+            {showComingSoon && <span className={styles.comingSoon}>Coming Soon!</span>}
+          </div>
           <p className={styles.body}>
             {body ?? defaultBody}
           </p>

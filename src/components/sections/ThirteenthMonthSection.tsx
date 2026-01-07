@@ -10,14 +10,14 @@ interface ThirteenthMonthSectionProps {
 }
 
 export function ThirteenthMonthSection({
-  heading = '13th Month Savings',
+  heading = '₦1,000 Daily Challenge 2026',
   body,
   image = '/assets/13th.png',
   imageAlt = '13th month savings illustration',
-  showComingSoon = true
+  showComingSoon = false
 }: ThirteenthMonthSectionProps = {}) {
   const defaultBody = (
-    'Save consistently and receive a 13th-month bonus equal to one month\'s savings at the end of the year. Example: Save ₦200,000 monthly and receive a ₦200,000 bonus.'
+    'Save ₦1,000 daily alongside thousands of disciplined savers in 2026.\nJoin today, stay committed till December 31st, 2026, and earn daily interest on every deposit.'
   )
 
   return (

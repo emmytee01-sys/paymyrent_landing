@@ -5,7 +5,8 @@ import styles from './InvestmentSection.module.css'
 interface InvestmentSectionProps {
   heading?: string
   body?: string
-  buttonText?: string
+  brochureLink?: string
+  telegramLink?: string
   image?: string
   imageAlt?: string
 }
@@ -13,7 +14,8 @@ interface InvestmentSectionProps {
 export function InvestmentSection({
   heading = 'Investment and Earn in Dollars',
   body,
-  buttonText = 'Invest Now',
+  brochureLink,
+  telegramLink,
   image = '/assets/investt-removebg-preview.png',
   imageAlt = 'Investment illustration'
 }: InvestmentSectionProps = {}) {
@@ -33,7 +35,34 @@ export function InvestmentSection({
           <p className={styles.body}>
             {body ?? defaultBody}
           </p>
-          <Button className={styles.investButton}>{buttonText}</Button>
+          <div className={styles.buttonContainer}>
+            {brochureLink && (
+              <a 
+                href={brochureLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.buttonLink}
+              >
+                <Button className={styles.investButton}>Download the brochure</Button>
+              </a>
+            )}
+            {telegramLink && (
+              <a 
+                href={telegramLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.buttonLink}
+              >
+                <Button className={styles.investButton}>Join Telegram community</Button>
+              </a>
+            )}
+            {!brochureLink && !telegramLink && (
+              <>
+                <Button className={styles.investButton}>Download the brochure</Button>
+                <Button className={styles.investButton}>Join Telegram community</Button>
+              </>
+            )}
+          </div>
         </div>
       </Container>
     </section>

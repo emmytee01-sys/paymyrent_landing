@@ -1,5 +1,4 @@
 import { Container } from '../../ui/Container'
-import { Button } from '../../ui/Button'
 import styles from './PrepareRentalAgreementsSection.module.css'
 
 export function PrepareRentalAgreementsSection() {
@@ -11,7 +10,6 @@ export function PrepareRentalAgreementsSection() {
           <p className={styles.description}>
             We are experts in real estate, especially in property management! We will craft thorough and clear rental agreements on your behalf to ensure your tenant understands their responsibilities.
           </p>
-          <Button className={styles.ctaButton}>learn more</Button>
         </div>
         <div className={styles.visual}>
           <img src="/assets/pro.png" alt="Prepare Rental Agreements illustration" className={styles.agreementImage} />

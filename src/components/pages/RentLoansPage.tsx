@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { HeroSection } from '../sections/HeroSection'
 import heroStyles from '../sections/HeroSection.module.css'
 import { AutomatedSavingsSection } from '../sections/AutomatedSavingsSection'
@@ -15,6 +16,7 @@ import { Footer } from '../layout/Footer'
 import { FooterAwardSection } from '../sections/FooterAwardSection'
 
 export function RentLoansPage() {
+  const navigate = useNavigate()
   return (
     <>
       <HeroSection 
@@ -54,6 +56,7 @@ export function RentLoansPage() {
         heading="Support Your Employees with Rent Loans"
         body="Partner with PayMyRent to give your staff access to affordable rent loans, helping them pay rent upfront and repay conveniently through monthly deductions."
         buttonText="Start an Employer Partnership"
+        onButtonClick={() => navigate('/employer-partnership')}
         image="/assets/fd90ba5a20895b9a3ecb1a551f5e20eb06bc900f.png"
         imageAlt="Employer partnership for rent loans"
       />

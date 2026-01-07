@@ -1,0 +1,370 @@
+.page {
+  padding: 3rem 0;
+  background: #ffffff;
+  min-height: calc(100vh - 200px);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.pageTitle {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 130%;
+  color: #f90303;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.progressBarContainer {
+  margin-top: 2rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #f90303 0%, #d00202 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  color: #3d3d3d;
+  text-align: center;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section {
+  padding: 2rem;
+  background: #fffdfc;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sectionTitle {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  color: #3d3d3d;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sectionSubtitle {
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
+}
+
+.formGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup:first-child {
+  margin-top: 0;
+}
+
+.label {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #3d3d3d;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hint {
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+}
+
+.input {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #3d3d3d;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #f90303;
+  box-shadow: 0 0 0 3px rgba(249, 3, 3, 0.1);
+}
+
+.input::placeholder {
+  color: #999999;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.row .input {
+  flex: 1;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkboxLabel {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.checkboxLabel:hover {
+  background: #f8f8f8;
+}
+
+.radio,
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #f90303;
+  flex-shrink: 0;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.prevButton {
+  background: #ffffff !important;
+  color: #3d3d3d !important;
+  border: 1.5px solid #d0d0d0 !important;
+  padding: 1rem 2.5rem !important;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.prevButton:hover {
+  background: #f8f8f8 !important;
+  border-color: #3d3d3d !important;
+}
+
+.nextButton,
+.submitButton {
+  background: #f90303 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 1rem 2.5rem !important;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0px 4px 12px rgba(249, 3, 3, 0.3);
+  margin-left: auto;
+}
+
+.nextButton:hover,
+.submitButton:hover {
+  background: #d00202 !important;
+  transform: translateY(-1px);
+  box-shadow: 0px 6px 16px rgba(249, 3, 3, 0.4);
+}
+
+.nextButton:active,
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Success Message */
+.successMessage {
+  text-align: center;
+  padding: 5rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.successIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f90303 0%, #d00202 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 auto 2rem;
+  box-shadow: 0px 8px 24px rgba(249, 3, 3, 0.25);
+  animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 130%;
+  color: #3d3d3d;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.successText {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .prevButton,
+  .nextButton,
+  .submitButton {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 2rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .input {
+    padding: 0.75rem;
+    font-size: 15px;
+  }
+
+  .progressText {
+    font-size: 14px;
+  }
+}
+

@@ -38,6 +38,18 @@
   animation: fadeInRight 0.8s ease-out 0.2s forwards;
 }
 
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInRight 0.8s ease-out 0.4s forwards;
+}
+
+.buttonLink {
+  text-decoration: none;
+}
+
 .joinButton {
   font-family: 'Inter', var(--font-ui);
   font-weight: 600;
@@ -49,8 +61,7 @@
   border: none !important;
   padding: 0.7875rem 1.8rem;
   box-shadow: var(--shadow-soft);
-  opacity: 0;
-  animation: fadeInRight 0.8s ease-out 0.4s forwards;
+  cursor: pointer;
 }
 
 .joinButton:hover {
@@ -123,12 +134,20 @@
   .visual {
     width: clamp(18rem, 70vw, 24rem);
   }
+
+  .buttonContainer {
+    flex-direction: column;
+  }
+
+  .joinButton {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .heading,
   .body,
-  .joinButton,
+  .buttonContainer,
   .visual {
     animation: none;
     opacity: 1;
