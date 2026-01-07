@@ -22,11 +22,7 @@ export function WealthClubSection({
 }: WealthClubSectionProps = {}) {
   const defaultBody = (
     <>
-      Join a community of investors building wealth together through land ownership and plantation investment.
-      <br /><br />
-      Invest ₦20,000 monthly for 24 months and secure one plot of farmland at The Palms Plantation.
-      <br /><br />
-      We manage and farm your land for you, while you earn annual income from year 5 to year 35 — plus long-term land appreciation.
+      Join a community of investors building wealth together through land ownership and plantation investment. Invest ₦20,000 monthly for 24 months and secure one plot of farmland at The Palms Plantation. We manage and farm your land for you, while you earn annual income from year 5 to year 35 — plus long-term land appreciation.
     </>
   )
 
