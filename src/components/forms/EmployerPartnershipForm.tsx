@@ -1,4 +1,5 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { Button } from '../ui/Button'
 import styles from './EmployerPartnershipForm.module.css'
 

@@ -63,7 +63,6 @@ export function RentLoansPage() {
       <InvestmentSection 
         heading="Rent Support Program for Civil Servants"
         body="State Governments and public institutions can partner with PayMyRent to provide structured rent loans to employees. Rent is paid upfront, while repayments are deducted monthly through payroll—ensuring accountability, affordability, and workforce stability."
-        buttonText="Register Your Agency"
         image="/assets/investt-removebg-preview.png"
         imageAlt="Rent support program for civil servants"
       />

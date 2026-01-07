@@ -1,4 +1,5 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
 import { Footer } from '../layout/Footer'
