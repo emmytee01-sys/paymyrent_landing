@@ -46,6 +46,50 @@ export function EmployerPartnershipPage() {
   })
 
   const [showSuccess, setShowSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  const validateUrl = (url: string): boolean => {
+    if (!url) return true // Optional field
+    try {
+      const urlObj = new URL(url)
+      return urlObj.protocol === 'http:' || urlObj.protocol === 'https:'
+    } catch {
+      return false
+    }
+  }
+
+  const validateEmail = (email: string): boolean => {
+    if (!email) return true // Optional field
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const validateStep = (step: number): boolean => {
+    const errors: Record<string, string> = {}
+
+    if (step === 1) {
+      // Validate website (optional but must be valid if provided)
+      if (formData.website && !validateUrl(formData.website)) {
+        errors.website = 'Invalid website format. Example: https://example.com'
+      }
+    }
+
+    if (step === 2) {
+      // Validate email (optional but must be valid if provided)
+      if (formData.email && !validateEmail(formData.email)) {
+        errors.email = 'Invalid email format. Example: name@company.com'
+      }
+      // Validate LinkedIn (optional but must be valid if provided)
+      if (formData.linkedin && !validateUrl(formData.linkedin)) {
+        errors.linkedin = 'Invalid LinkedIn URL format. Example: https://linkedin.com/in/yourprofile'
+      }
+    }
+
+    setFieldErrors(errors)
+    return Object.keys(errors).length === 0
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -54,10 +98,23 @@ export function EmployerPartnershipPage() {
       setFormData(prev => ({ ...prev, [name]: checked }))
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
+      // Clear error for this field when user starts typing
+      if (fieldErrors[name]) {
+        setFieldErrors(prev => {
+          const newErrors = { ...prev }
+          delete newErrors[name]
+          return newErrors
+        })
+      }
     }
   }
 
   const handleNext = () => {
+    // Validate current step before proceeding
+    if (!validateStep(currentStep)) {
+      return
+    }
+
     if (currentStep < totalSections) {
       setCurrentStep(currentStep + 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -71,10 +128,99 @@ export function EmployerPartnershipPage() {
     }
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const convertEmployeeCountToNumber = (range: string): number => {
+    const ranges: Record<string, number> = {
+      '1–10': 5,
+      '11–50': 30,
+      '51–200': 125,
+      '201–1,000': 600,
+      '1,000+': 1500,
+    }
+    return ranges[range] || 0
+  }
+
+  const convertAgreeDeductions = (value: string): string => {
+    if (value.toLowerCase().includes('yes')) {
+      return 'yes'
+    }
+    return 'no'
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    setShowSuccess(true)
+    
+    // Validate all steps before submitting
+    if (!validateStep(1) || !validateStep(2)) {
+      setError('Please fix the validation errors before submitting.')
+      return
+    }
+
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      // Build products array
+      const products: string[] = []
+      if (formData.rentLoans) products.push('rent loans')
+      if (formData.paydayLoans) products.push('payday loans')
+
+      // Transform form data to API format
+      const apiData = {
+        company_legal_name: formData.companyName,
+        business_registration_number: formData.registrationNumber,
+        business_type: formData.businessType,
+        industry: formData.industry,
+        company_address_street: formData.street,
+        company_address_city: formData.city,
+        company_address_state: formData.state || null,
+        website: formData.website || null,
+        contact_person_name: formData.contactName,
+        job_title: formData.jobTitle,
+        official_work_email: formData.email,
+        phone_number: formData.phone,
+        linkedin: formData.linkedin || null,
+        total_number_of_employees: convertEmployeeCountToNumber(formData.employeeCount),
+        agree_to_monthly_loan_deductions: convertAgreeDeductions(formData.agreeDeductions),
+        salary_payment_date: formData.salaryDate || null,
+        products_interested_in: products,
+      }
+
+      const response = await fetch('https://api-staging.paymyrent.africa/api/employer/partnership', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(apiData),
+      })
+
+      let result
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json()
+      } else {
+        const text = await response.text()
+        throw new Error(`Server error (${response.status}): ${text.substring(0, 100)}`)
+      }
+
+      if (!response.ok) {
+        // Handle Laravel-style error responses
+        const errorMessage = result.message || result.error || (result.errors && typeof result.errors === 'object' ? JSON.stringify(result.errors) : '') || 'Failed to submit application'
+        throw new Error(errorMessage)
+      }
+
+      if (result.status === 'success') {
+        setShowSuccess(true)
+      } else {
+        throw new Error(result.message || 'Failed to submit application')
+      }
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred while submitting your application. Please try again.'
+      setError(errorMessage)
+      console.error('Error submitting form:', err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const progress = (currentStep / totalSections) * 100
@@ -233,9 +379,12 @@ export function EmployerPartnershipPage() {
                     name="website"
                     value={formData.website}
                     onChange={handleInputChange}
-                    className={styles.input}
+                    className={`${styles.input} ${fieldErrors.website ? styles.inputError : ''}`}
                     placeholder="https://example.com"
                   />
+                  {fieldErrors.website && (
+                    <span className={styles.fieldError}>{fieldErrors.website}</span>
+                  )}
                 </div>
               </div>
             )}
@@ -289,9 +438,12 @@ export function EmployerPartnershipPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={styles.input}
+                    className={`${styles.input} ${fieldErrors.email ? styles.inputError : ''}`}
                     required
                   />
+                  {fieldErrors.email && (
+                    <span className={styles.fieldError}>{fieldErrors.email}</span>
+                  )}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -315,9 +467,12 @@ export function EmployerPartnershipPage() {
                     name="linkedin"
                     value={formData.linkedin}
                     onChange={handleInputChange}
-                    className={styles.input}
+                    className={`${styles.input} ${fieldErrors.linkedin ? styles.inputError : ''}`}
                     placeholder="https://linkedin.com/in/yourprofile"
                   />
+                  {fieldErrors.linkedin && (
+                    <span className={styles.fieldError}>{fieldErrors.linkedin}</span>
+                  )}
                 </div>
               </div>
             )}
@@ -469,19 +624,24 @@ export function EmployerPartnershipPage() {
               </div>
             )}
 
+            {error && (
+              <div className={styles.errorMessage}>
+                {error}
+              </div>
+            )}
             <div className={styles.formActions}>
               {currentStep > 1 && (
-                <Button type="button" className={styles.prevButton} onClick={handlePrevious}>
+                <Button type="button" className={styles.prevButton} onClick={handlePrevious} disabled={isSubmitting}>
                   Previous
                 </Button>
               )}
               {currentStep < totalSections ? (
-                <Button type="button" className={styles.nextButton} onClick={handleNext}>
+                <Button type="button" className={styles.nextButton} onClick={handleNext} disabled={isSubmitting}>
                   Next
                 </Button>
               ) : (
-                <Button type="submit" className={styles.submitButton}>
-                  Submit Application
+                <Button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </Button>
               )}
             </div>

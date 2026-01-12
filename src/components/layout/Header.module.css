@@ -156,6 +156,15 @@
   gap: 1rem;
 }
 
+.actions > a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.loanButtonWrapper {
+  position: relative;
+}
+
 .loginButtonLink {
   text-decoration: none;
   display: inline-block;
@@ -194,7 +203,7 @@
   font-size: 20px;
   line-height: 24px;
   padding: 11px 18px;
-  cursor: default;
+  cursor: pointer;
 }
 
 .ctaButton:disabled {

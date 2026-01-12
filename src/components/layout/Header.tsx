@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
 
 export function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [loanDropdownOpen, setLoanDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
 
@@ -122,7 +123,71 @@ export function Header() {
           <Button variant="secondary" className={styles.loginButton} disabled>
             Login
           </Button>
-          <Button className={styles.ctaButton} disabled>Create free account</Button>
+          <div className={styles.loanButtonWrapper}>
+            <button 
+              className={styles.ctaButton}
+              onClick={() => setLoanDropdownOpen(!loanDropdownOpen)}
+              onBlur={() => setTimeout(() => setLoanDropdownOpen(false), 200)}
+            >
+              Apply For Loan
+            </button>
+            {loanDropdownOpen && (
+              <div className={styles.dropdown}>
+                <Link 
+                  to="/apply-for-loan/federal-staff" 
+                  className={styles.dropdownItem}
+                  onClick={() => {
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Federal Staff
+                </Link>
+                <a 
+                  href="#state-staff" 
+                  className={styles.dropdownItem}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  State Staff
+                </a>
+                <a 
+                  href="#partnered-companies" 
+                  className={styles.dropdownItem}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Partnered Companies
+                </a>
+                <Link 
+                  to="/apply-for-loan/paymyrent-saver" 
+                  className={styles.dropdownItem}
+                  onClick={() => {
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Paymyrent Saver
+                </Link>
+                <Link 
+                  to="/check-loan-status" 
+                  className={styles.dropdownItem}
+                  onClick={() => {
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Check Loan Status
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </Container>
     </header>

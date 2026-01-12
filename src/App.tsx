@@ -23,6 +23,8 @@ import { InvestmentPage } from './components/pages/InvestmentPage'
 import { PrivacyPolicyPage } from './components/pages/PrivacyPolicyPage'
 import { TermsOfUsePage } from './components/pages/TermsOfUsePage'
 import { EmployerPartnershipPage } from './components/pages/EmployerPartnershipPage'
+import { FederalStaffLoanApplicationPage } from './components/pages/FederalStaffLoanApplicationPage'
+import { CheckLoanStatusPage } from './components/pages/CheckLoanStatusPage'
 
 function HomePage() {
   return (
@@ -69,6 +71,8 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfUsePage />} />
             <Route path="/employer-partnership" element={<EmployerPartnershipPage />} />
+            <Route path="/apply-for-loan/federal-staff" element={<FederalStaffLoanApplicationPage />} />
+            <Route path="/check-loan-status" element={<CheckLoanStatusPage />} />
           </Routes>
         </main>
       </div>
