@@ -141,30 +141,18 @@ export function Header() {
                     setMobileMenuOpen(false)
                   }}
                 >
-                  Federal Staff
+                  Federal Staff Loan
                 </Link>
-                <a 
-                  href="#state-staff" 
+                <Link 
+                  to="/apply-for-loan/partnered-companies" 
                   className={styles.dropdownItem}
-                  onClick={(e) => {
-                    e.preventDefault()
+                  onClick={() => {
                     setLoanDropdownOpen(false)
                     setMobileMenuOpen(false)
                   }}
                 >
-                  State Staff
-                </a>
-                <a 
-                  href="#partnered-companies" 
-                  className={styles.dropdownItem}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setLoanDropdownOpen(false)
-                    setMobileMenuOpen(false)
-                  }}
-                >
-                  Partnered Companies
-                </a>
+                  Partnered Companies Loan
+                </Link>
                 <Link 
                   to="/apply-for-loan/paymyrent-saver" 
                   className={styles.dropdownItem}
@@ -173,17 +161,7 @@ export function Header() {
                     setMobileMenuOpen(false)
                   }}
                 >
-                  Paymyrent Saver
-                </Link>
-                <Link 
-                  to="/check-loan-status" 
-                  className={styles.dropdownItem}
-                  onClick={() => {
-                    setLoanDropdownOpen(false)
-                    setMobileMenuOpen(false)
-                  }}
-                >
-                  Check Loan Status
+                  Paymyrent Saver Loan
                 </Link>
               </div>
             )}

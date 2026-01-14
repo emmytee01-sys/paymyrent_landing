@@ -198,7 +198,7 @@ export function EmployerPartnershipForm({ onClose }: EmployerPartnershipFormProp
               value={formData.website}
               onChange={handleInputChange}
               className={styles.input}
-              placeholder="https://example.com"
+              placeholder="www.example.com"
             />
           </div>
         </div>

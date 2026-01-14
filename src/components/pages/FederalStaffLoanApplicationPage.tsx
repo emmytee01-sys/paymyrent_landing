@@ -30,14 +30,17 @@ export function FederalStaffLoanApplicationPage() {
     staffIdNumber: '',
     govtIdCard: false,
     passport: false,
-    payslip: false,
+    payslip1: false,
+    payslip2: false,
     govtIdCardFile: null as File | null,
     passportFile: null as File | null,
-    payslipFile: null as File | null,
+    payslip1File: null as File | null,
+    payslip2File: null as File | null,
     
     // Section C
     salaryBankName: '',
     salaryAccountNumber: '',
+    bvn: '',
     accountName: '',
     authorizeDebit: false,
     
@@ -127,12 +130,18 @@ export function FederalStaffLoanApplicationPage() {
       if (formData.passportFile) {
         formDataToSend.append('passport', formData.passportFile)
       }
-      if (formData.payslipFile) {
-        formDataToSend.append('payslip', formData.payslipFile)
+      // Send first payslip as 'payslip' (required by API)
+      if (formData.payslip1File) {
+        formDataToSend.append('payslip', formData.payslip1File)
+      }
+      // Send second payslip as 'payslip_2' (if API supports it)
+      if (formData.payslip2File) {
+        formDataToSend.append('payslip_2', formData.payslip2File)
       }
       
       formDataToSend.append('salary_bank_name', formData.salaryBankName)
       formDataToSend.append('salary_account_number', formData.salaryAccountNumber)
+      if (formData.bvn) formDataToSend.append('bvn_number', formData.bvn)
       formDataToSend.append('account_name', formData.accountName)
       formDataToSend.append('authorize_repayment_deduction', formData.authorizeDebit ? '1' : '0')
       formDataToSend.append('requested_amount', formData.requestedAmount)
@@ -140,7 +149,7 @@ export function FederalStaffLoanApplicationPage() {
       if (formData.purposeOther) formDataToSend.append('loan_purpose_other', formData.purposeOther)
       if (formData.nextSalaryDate) formDataToSend.append('next_salary_date', formData.nextSalaryDate)
 
-      const response = await fetch('https://api-staging.paymyrent.africa/api/federal-staff-loan/apply', {
+      const response = await fetch('https://api-prod.paymyrent.africa/api/federal-staff-loan/apply', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -527,17 +536,38 @@ export function FederalStaffLoanApplicationPage() {
                       <label className={styles.checkboxLabel}>
                         <input
                           type="checkbox"
-                          name="payslip"
-                          checked={formData.payslip}
+                          name="payslip1"
+                          checked={formData.payslip1}
                           onChange={handleInputChange}
                           className={styles.checkbox}
                         />
-                        <span>Recent Payslip</span>
+                        <span>Payslip 1</span>
                       </label>
-                      {formData.payslip && (
+                      {formData.payslip1 && (
                         <input
                           type="file"
-                          name="payslipFile"
+                          name="payslip1File"
+                          onChange={handleInputChange}
+                          className={styles.fileInput}
+                          accept="image/*,.pdf"
+                        />
+                      )}
+                    </div>
+                    <div className={styles.uploadItem}>
+                      <label className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          name="payslip2"
+                          checked={formData.payslip2}
+                          onChange={handleInputChange}
+                          className={styles.checkbox}
+                        />
+                        <span>Payslip 2</span>
+                      </label>
+                      {formData.payslip2 && (
+                        <input
+                          type="file"
+                          name="payslip2File"
                           onChange={handleInputChange}
                           className={styles.fileInput}
                           accept="image/*,.pdf"
@@ -584,6 +614,22 @@ export function FederalStaffLoanApplicationPage() {
                     onChange={handleInputChange}
                     className={styles.input}
                     required
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="bvn" className={styles.label}>
+                    BVN (Bank Verification Number)
+                  </label>
+                  <input
+                    type="text"
+                    id="bvn"
+                    name="bvn"
+                    value={formData.bvn}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                    placeholder="Enter your 11-digit BVN"
+                    maxLength={11}
                   />
                 </div>
 

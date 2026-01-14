@@ -24,6 +24,9 @@ import { PrivacyPolicyPage } from './components/pages/PrivacyPolicyPage'
 import { TermsOfUsePage } from './components/pages/TermsOfUsePage'
 import { EmployerPartnershipPage } from './components/pages/EmployerPartnershipPage'
 import { FederalStaffLoanApplicationPage } from './components/pages/FederalStaffLoanApplicationPage'
+import { StateStaffLoanApplicationPage } from './components/pages/StateStaffLoanApplicationPage'
+import { PartneredCompaniesLoanApplicationPage } from './components/pages/PartneredCompaniesLoanApplicationPage'
+import { PaymyrentSaverLoanApplicationPage } from './components/pages/PaymyrentSaverLoanApplicationPage'
 import { CheckLoanStatusPage } from './components/pages/CheckLoanStatusPage'
 
 function HomePage() {
@@ -72,6 +75,9 @@ function App() {
             <Route path="/terms" element={<TermsOfUsePage />} />
             <Route path="/employer-partnership" element={<EmployerPartnershipPage />} />
             <Route path="/apply-for-loan/federal-staff" element={<FederalStaffLoanApplicationPage />} />
+            <Route path="/apply-for-loan/state-staff" element={<StateStaffLoanApplicationPage />} />
+            <Route path="/apply-for-loan/partnered-companies" element={<PartneredCompaniesLoanApplicationPage />} />
+            <Route path="/apply-for-loan/paymyrent-saver" element={<PaymyrentSaverLoanApplicationPage />} />
             <Route path="/check-loan-status" element={<CheckLoanStatusPage />} />
           </Routes>
         </main>

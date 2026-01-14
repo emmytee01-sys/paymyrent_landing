@@ -52,12 +52,9 @@ export function EmployerPartnershipPage() {
 
   const validateUrl = (url: string): boolean => {
     if (!url) return true // Optional field
-    try {
-      const urlObj = new URL(url)
-      return urlObj.protocol === 'http:' || urlObj.protocol === 'https:'
-    } catch {
-      return false
-    }
+    // Accept format: www.example.com or example.com (with optional path)
+    const urlRegex = /^(www\.)?[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*(\.[a-zA-Z]{2,})(\/.*)?$/
+    return urlRegex.test(url)
   }
 
   const validateEmail = (email: string): boolean => {
@@ -72,7 +69,7 @@ export function EmployerPartnershipPage() {
     if (step === 1) {
       // Validate website (optional but must be valid if provided)
       if (formData.website && !validateUrl(formData.website)) {
-        errors.website = 'Invalid website format. Example: https://example.com'
+        errors.website = 'Invalid website format. Example: www.example.com'
       }
     }
 
@@ -185,7 +182,7 @@ export function EmployerPartnershipPage() {
         products_interested_in: products,
       }
 
-      const response = await fetch('https://api-staging.paymyrent.africa/api/employer/partnership', {
+      const response = await fetch('https://api-prod.paymyrent.africa/api/employer/partnership', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -380,7 +377,7 @@ export function EmployerPartnershipPage() {
                     value={formData.website}
                     onChange={handleInputChange}
                     className={`${styles.input} ${fieldErrors.website ? styles.inputError : ''}`}
-                    placeholder="https://example.com"
+                    placeholder="www.example.com"
                   />
                   {fieldErrors.website && (
                     <span className={styles.fieldError}>{fieldErrors.website}</span>
