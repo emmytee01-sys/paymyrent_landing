@@ -28,6 +28,8 @@ import { StateStaffLoanApplicationPage } from './components/pages/StateStaffLoan
 import { PartneredCompaniesLoanApplicationPage } from './components/pages/PartneredCompaniesLoanApplicationPage'
 import { PaymyrentSaverLoanApplicationPage } from './components/pages/PaymyrentSaverLoanApplicationPage'
 import { CheckLoanStatusPage } from './components/pages/CheckLoanStatusPage'
+import { LandlordInterestFormPage } from './components/pages/LandlordInterestFormPage'
+import { StateMDARegistrationPage } from './components/pages/StateMDARegistrationPage'
 
 function HomePage() {
   return (
@@ -37,7 +39,7 @@ function HomePage() {
       <FixedDepositSection />
       <ThirteenthMonthSection />
       <WealthClubSection />
-      <SearchPropertiesSection 
+      <SearchPropertiesSection
         heading="Rent Loan"
         body="Save towards your rent for 6 months and access a loan to cover your rent payment in full, with affordable interest rates. This makes it easier to plan and avoid the stress of lump-sum rent payments."
         buttonText="Start Today"
@@ -66,19 +68,21 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/landlord" element={<LandlordPage />} />
+            <Route path="/landlord-overview" element={<LandlordPage />} />
             <Route path="/property-management" element={<PropertyManagementPage />} />
             <Route path="/tenant-screening" element={<TenantScreeningPage />} />
             <Route path="/rent-loans" element={<RentLoansPage />} />
             <Route path="/investment" element={<InvestmentPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfUsePage />} />
-            <Route path="/employer-partnership" element={<EmployerPartnershipPage />} />
-            <Route path="/apply-for-loan/federal-staff" element={<FederalStaffLoanApplicationPage />} />
+            <Route path="/employer" element={<EmployerPartnershipPage />} />
+            <Route path="/federalloan" element={<FederalStaffLoanApplicationPage />} />
             <Route path="/apply-for-loan/state-staff" element={<StateStaffLoanApplicationPage />} />
-            <Route path="/apply-for-loan/partnered-companies" element={<PartneredCompaniesLoanApplicationPage />} />
+            <Route path="/companyloans" element={<PartneredCompaniesLoanApplicationPage />} />
             <Route path="/apply-for-loan/paymyrent-saver" element={<PaymyrentSaverLoanApplicationPage />} />
             <Route path="/check-loan-status" element={<CheckLoanStatusPage />} />
+            <Route path="/landlord" element={<LandlordInterestFormPage />} />
+            <Route path="/state-mda-registration" element={<StateMDARegistrationPage />} />
           </Routes>
         </main>
       </div>

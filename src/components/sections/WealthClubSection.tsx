@@ -13,7 +13,7 @@ interface WealthClubSectionProps {
 }
 
 export function WealthClubSection({
-  heading = 'Join the ₦20,000 Investment Club',
+  heading = 'Co-own a Palm Oil Plantation',
   body,
   brochureLink,
   telegramLink,

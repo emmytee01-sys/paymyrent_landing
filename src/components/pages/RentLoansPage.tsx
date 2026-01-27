@@ -19,13 +19,13 @@ export function RentLoansPage() {
   const navigate = useNavigate()
   return (
     <>
-      <HeroSection 
+      <HeroSection
         heroImage="/assets/rentt.png"
         headingLine1={<><span className={heroStyles.highlight}>The Rent Loan</span>,</>}
         headingLine2={<> designed just for <span className={heroStyles.highlight}>you</span></>}
         description="Save consistently for 6 months and qualify for a loan to help cover your rent when it's due."
       />
-      <AutomatedSavingsSection 
+      <AutomatedSavingsSection
         heading="Eligibility"
         image="/assets/rent_loan2.png"
         imageAlt="Eligibility requirements"
@@ -39,34 +39,36 @@ export function RentLoansPage() {
           </ul>
         }
       />
-      <FixedDepositSection 
+      <FixedDepositSection
         heading="Low Interest"
         body="Save consistently and enjoy rent loans at interest rates as low as 20%, helping you stay housed without unnecessary financial pressure."
         image="/assets/rent_loan3.png"
         imageAlt="Low interest rent loans"
       />
-      <ThirteenthMonthSection 
+      <ThirteenthMonthSection
         heading="Monthly Rent Payment"
         body="Save on Paymyrent for 6months, get a loan to pay your house rent in full. Repay loan monthly for 6 months. With this, we have helped you structure your rent into monthly repayment."
         image="/assets/rent_loan4.png"
         imageAlt="Monthly rent payment"
         showComingSoon={false}
       />
-      <SearchPropertiesSection 
+      <SearchPropertiesSection
         heading="Support Your Employees with Rent Loans"
         body="Partner with PayMyRent to give your staff access to affordable rent loans, helping them pay rent upfront and repay conveniently through monthly deductions."
         buttonText="Start an Employer Partnership"
-        onButtonClick={() => navigate('/employer-partnership')}
+        onButtonClick={() => navigate('/employer')}
         image="/assets/fd90ba5a20895b9a3ecb1a551f5e20eb06bc900f.png"
         imageAlt="Employer partnership for rent loans"
       />
-      <InvestmentSection 
+      <InvestmentSection
         heading="Rent Support Program for Civil Servants"
         body="State Governments and public institutions can partner with PayMyRent to provide structured rent loans to employees. Rent is paid upfront, while repayments are deducted monthly through payroll—ensuring accountability, affordability, and workforce stability."
         image="/assets/investt-removebg-preview.png"
         imageAlt="Rent support program for civil servants"
+        singleButtonText="Register Your State/MDA"
+        onSingleButtonClick={() => navigate('/state-mda-registration')}
       />
-      <HowItWorksSection 
+      <HowItWorksSection
         heading="How Our Lending Platform Works"
         steps={[
           {

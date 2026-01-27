@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Container } from '../../ui/Container'
 import { Button } from '../../ui/Button'
 import styles from './PropertyManagementHeroSection.module.css'
@@ -13,7 +14,9 @@ export function PropertyManagementHeroSection() {
           <p className={styles.description}>
             At Paymyrent, we don't just manage properties - we craft personalized experiences through outstanding property management services tailored to your unique needs.
           </p>
-          <Button className={styles.ctaButton}>Get Started</Button>
+          <Link to="/landlord">
+            <Button className={styles.ctaButton}>Get Started</Button>
+          </Link>
         </div>
         <div className={styles.visual}>
           <div className={styles.visualContent}>

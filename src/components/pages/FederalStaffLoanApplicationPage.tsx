@@ -6,7 +6,7 @@ import { Footer } from '../layout/Footer'
 import { FooterAwardSection } from '../sections/FooterAwardSection'
 import styles from './FederalStaffLoanApplicationPage.module.css'
 
-const totalSections = 5
+const totalSections = 4
 
 export function FederalStaffLoanApplicationPage() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -18,7 +18,7 @@ export function FederalStaffLoanApplicationPage() {
     dateOfBirth: '',
     residentialAddress: '',
     stateOfResidence: '',
-    
+
     // Section B
     employmentCategory: 'Federal Government Staff',
     ippisNumber: '',
@@ -36,20 +36,19 @@ export function FederalStaffLoanApplicationPage() {
     passportFile: null as File | null,
     payslip1File: null as File | null,
     payslip2File: null as File | null,
-    
+
     // Section C
     salaryBankName: '',
     salaryAccountNumber: '',
     bvn: '',
     accountName: '',
     authorizeDebit: false,
-    
+
     // Section D
     loanType: 'Salary Advance (30 Days)',
     requestedAmount: '',
     purpose: '',
     purposeOther: '',
-    nextSalaryDate: '',
   })
 
   const [showSuccess, setShowSuccess] = useState(false)
@@ -76,7 +75,52 @@ export function FederalStaffLoanApplicationPage() {
     }
   }
 
+  const validateStep = (step: number): boolean => {
+    const errors: string[] = []
+
+    if (step === 1) {
+      if (!formData.fullName) errors.push('Full name is required')
+      if (!formData.phoneNumber) errors.push('Phone number is required')
+      if (!formData.dateOfBirth) errors.push('Date of birth is required')
+      if (!formData.residentialAddress) errors.push('Residential address is required')
+      if (!formData.stateOfResidence) errors.push('State of residence is required')
+    }
+
+    if (step === 2) {
+      if (!formData.ippisNumber) errors.push('IPPIS number is required')
+      if (!formData.mda) errors.push('MDA is required')
+      if (!formData.workLocationState) errors.push('Work location state is required')
+      if (!formData.govtIdCardFile) errors.push('Valid Government Staff ID Card is required')
+      if (!formData.passportFile) errors.push('Recent Passport is required')
+      if (!formData.payslip1File) errors.push('Recent Payslip 1 is required')
+      if (!formData.payslip2File) errors.push('Recent Payslip 2 is required')
+    }
+
+    if (step === 3) {
+      if (!formData.salaryBankName) errors.push('Salary bank name is required')
+      if (!formData.salaryAccountNumber) errors.push('Salary account number is required')
+      if (!formData.accountName) errors.push('Account name is required')
+      if (!formData.authorizeDebit) errors.push('You must authorize repayment deduction')
+    }
+
+    if (step === 4) {
+      if (!formData.requestedAmount) errors.push('Requested amount is required')
+    }
+
+    if (errors.length > 0) {
+      setError(errors[0])
+      return false
+    }
+
+    setError(null)
+    return true
+  }
+
   const handleNext = () => {
+    if (!validateStep(currentStep)) {
+      return
+    }
+
     if (currentStep < totalSections) {
       setCurrentStep(currentStep + 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -84,6 +128,7 @@ export function FederalStaffLoanApplicationPage() {
   }
 
   const handlePrevious = () => {
+    setError(null)
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -107,7 +152,7 @@ export function FederalStaffLoanApplicationPage() {
     try {
       // Prepare FormData for file uploads
       const formDataToSend = new FormData()
-      
+
       // Map form fields to API format
       formDataToSend.append('full_name', formData.fullName)
       formDataToSend.append('phone_number', formData.phoneNumber)
@@ -122,7 +167,7 @@ export function FederalStaffLoanApplicationPage() {
       formDataToSend.append('work_location_state', formData.workLocationState)
       if (formData.workLocationLga) formDataToSend.append('work_location_lga', formData.workLocationLga)
       if (formData.staffIdNumber) formDataToSend.append('staff_id_number', formData.staffIdNumber)
-      
+
       // Append files if they exist
       if (formData.govtIdCardFile) {
         formDataToSend.append('staff_id_card', formData.govtIdCardFile)
@@ -138,7 +183,7 @@ export function FederalStaffLoanApplicationPage() {
       if (formData.payslip2File) {
         formDataToSend.append('payslip_2', formData.payslip2File)
       }
-      
+
       formDataToSend.append('salary_bank_name', formData.salaryBankName)
       formDataToSend.append('salary_account_number', formData.salaryAccountNumber)
       if (formData.bvn) formDataToSend.append('bvn_number', formData.bvn)
@@ -147,9 +192,8 @@ export function FederalStaffLoanApplicationPage() {
       formDataToSend.append('requested_amount', formData.requestedAmount)
       formDataToSend.append('loan_purpose', formData.purpose)
       if (formData.purposeOther) formDataToSend.append('loan_purpose_other', formData.purposeOther)
-      if (formData.nextSalaryDate) formDataToSend.append('next_salary_date', formData.nextSalaryDate)
 
-      const response = await fetch('https://api-prod.paymyrent.africa/api/federal-staff-loan/apply', {
+      const response = await fetch('https://api-staging.paymyrent.africa/api/federal-staff-loan/apply', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -201,7 +245,7 @@ export function FederalStaffLoanApplicationPage() {
               <p className={styles.successText}>
                 Your loan application has been successfully submitted and is under review.
               </p>
-              
+
               {applicationData && (
                 <div className={styles.applicationDetails}>
                   <div className={styles.applicationCodeBox}>
@@ -209,7 +253,7 @@ export function FederalStaffLoanApplicationPage() {
                     <p className={styles.applicationCode}>{applicationData.application_code}</p>
                     <p className={styles.applicationCodeNote}>Please save this code for your records</p>
                   </div>
-                  
+
                   <div className={styles.applicationInfo}>
                     <div className={styles.infoRow}>
                       <span className={styles.infoLabel}>Requested Amount:</span>
@@ -247,8 +291,8 @@ export function FederalStaffLoanApplicationPage() {
             <h1 className={styles.pageTitle}>Federal Staff Salary Advance (30 Days)</h1>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBar}>
-                <div 
-                  className={styles.progressFill} 
+                <div
+                  className={styles.progressFill}
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -265,7 +309,7 @@ export function FederalStaffLoanApplicationPage() {
                 <h2 className={styles.sectionTitle}>
                   Section A: Applicant Details
                 </h2>
-                
+
                 <div className={styles.formGroup}>
                   <label htmlFor="fullName" className={styles.label}>
                     Full Name (as per Bank/NIN) <span className={styles.required}>*</span>
@@ -363,7 +407,7 @@ export function FederalStaffLoanApplicationPage() {
                 <h2 className={styles.sectionTitle}>
                   Section B: Employment Details (FEDERAL STAFF ONLY)
                 </h2>
-                
+
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Employment Category:</label>
                   <div className={styles.checkboxGroup}>
@@ -488,91 +532,68 @@ export function FederalStaffLoanApplicationPage() {
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Upload Required:</label>
-                  <div className={styles.checkboxGroup}>
+                  <label className={styles.label}>Upload Required <span className={styles.required}>*</span>:</label>
+                  <p className={styles.hint} style={{ marginBottom: '1.5rem' }}>Please upload your last 2 most recent payslips</p>
+
+                  <div className={styles.uploadGrid}>
                     <div className={styles.uploadItem}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          name="govtIdCard"
-                          checked={formData.govtIdCard}
-                          onChange={handleInputChange}
-                          className={styles.checkbox}
-                        />
-                        <span>Valid Government Staff ID Card</span>
+                      <label htmlFor="govtIdCardFile" className={styles.label}>
+                        Valid Government Staff ID Card <span className={styles.required}>*</span>
                       </label>
-                      {formData.govtIdCard && (
-                        <input
-                          type="file"
-                          name="govtIdCardFile"
-                          onChange={handleInputChange}
-                          className={styles.fileInput}
-                          accept="image/*,.pdf"
-                        />
-                      )}
+                      <input
+                        type="file"
+                        id="govtIdCardFile"
+                        name="govtIdCardFile"
+                        onChange={handleInputChange}
+                        className={styles.fileInput}
+                        accept="image/*,.pdf"
+                        required
+                      />
                     </div>
+
                     <div className={styles.uploadItem}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          name="passport"
-                          checked={formData.passport}
-                          onChange={handleInputChange}
-                          className={styles.checkbox}
-                        />
-                        <span>Recent Passport</span>
+                      <label htmlFor="passportFile" className={styles.label}>
+                        Recent Passport <span className={styles.required}>*</span>
                       </label>
-                      {formData.passport && (
-                        <input
-                          type="file"
-                          name="passportFile"
-                          onChange={handleInputChange}
-                          className={styles.fileInput}
-                          accept="image/*,.pdf"
-                        />
-                      )}
+                      <input
+                        type="file"
+                        id="passportFile"
+                        name="passportFile"
+                        onChange={handleInputChange}
+                        className={styles.fileInput}
+                        accept="image/*,.pdf"
+                        required
+                      />
                     </div>
+
                     <div className={styles.uploadItem}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          name="payslip1"
-                          checked={formData.payslip1}
-                          onChange={handleInputChange}
-                          className={styles.checkbox}
-                        />
-                        <span>Payslip 1</span>
+                      <label htmlFor="payslip1File" className={styles.label}>
+                        Recent Payslip 1 <span className={styles.required}>*</span>
                       </label>
-                      {formData.payslip1 && (
-                        <input
-                          type="file"
-                          name="payslip1File"
-                          onChange={handleInputChange}
-                          className={styles.fileInput}
-                          accept="image/*,.pdf"
-                        />
-                      )}
+                      <input
+                        type="file"
+                        id="payslip1File"
+                        name="payslip1File"
+                        onChange={handleInputChange}
+                        className={styles.fileInput}
+                        accept="image/*,.pdf"
+                        required
+                      />
                     </div>
+
                     <div className={styles.uploadItem}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          name="payslip2"
-                          checked={formData.payslip2}
-                          onChange={handleInputChange}
-                          className={styles.checkbox}
-                        />
-                        <span>Payslip 2</span>
+                      <label htmlFor="payslip2File" className={styles.label}>
+                        Recent Payslip 2 <span className={styles.required}>*</span>
                       </label>
-                      {formData.payslip2 && (
-                        <input
-                          type="file"
-                          name="payslip2File"
-                          onChange={handleInputChange}
-                          className={styles.fileInput}
-                          accept="image/*,.pdf"
-                        />
-                      )}
+                      <input
+                        type="file"
+                        id="payslip2File"
+                        name="payslip2File"
+                        onChange={handleInputChange}
+                        className={styles.fileInput}
+                        accept="image/*,.pdf"
+                        required
+                      />
                     </div>
                   </div>
                 </div>
@@ -586,7 +607,7 @@ export function FederalStaffLoanApplicationPage() {
                   Section C: Bank & Salary Details
                   <span className={styles.sectionSubtitle}>(This is where we pay the loan into)</span>
                 </h2>
-                
+
                 <div className={styles.formGroup}>
                   <label htmlFor="salaryBankName" className={styles.label}>
                     Salary Bank Name <span className={styles.required}>*</span>
@@ -671,7 +692,7 @@ export function FederalStaffLoanApplicationPage() {
             {currentStep === 4 && (
               <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>Section D: Loan Request Details</h2>
-                
+
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Loan Type:</label>
                   <div className={styles.checkboxGroup}>
@@ -755,34 +776,10 @@ export function FederalStaffLoanApplicationPage() {
                     />
                   )}
                 </div>
-              </div>
-            )}
-
-            {/* Section E */}
-            {currentStep === 5 && (
-              <div className={styles.section}>
-                <h2 className={styles.sectionTitle}>
-                  Section E: Loan Terms
-                  <span className={styles.sectionSubtitle}>Based on the amount selected above, the repayment amount is calculated as 25% of the selected loan amount. This information is provided for review prior to submission.</span>
-                </h2>
-                
-                <div className={styles.formGroup}>
-                  <label htmlFor="nextSalaryDate" className={styles.label}>
-                    Next Salary Date <span className={styles.required}>*</span>
-                  </label>
-                  <input
-                    type="date"
-                    id="nextSalaryDate"
-                    name="nextSalaryDate"
-                    value={formData.nextSalaryDate}
-                    onChange={handleInputChange}
-                    className={styles.input}
-                    required
-                  />
-                </div>
 
                 {formData.requestedAmount && (
-                  <div className={styles.loanTerms}>
+                  <div className={styles.loanTerms} style={{ marginTop: '2rem' }}>
+                    <h3 className={styles.sectionSubtitle} style={{ marginBottom: '1rem', fontWeight: 600 }}>Loan Terms Summary:</h3>
                     <div className={styles.termRow}>
                       <span className={styles.termLabel}>Loan Tenor:</span>
                       <span className={styles.termValue}>Till Next salary date</span>
@@ -795,6 +792,8 @@ export function FederalStaffLoanApplicationPage() {
                 )}
               </div>
             )}
+
+            {/* Section E removed */}
 
             {error && (
               <div className={styles.errorMessage}>

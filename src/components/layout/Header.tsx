@@ -45,7 +45,7 @@ export function Header() {
           <img src="/assets/logo.png" alt="PayMyRent" />
         </Link>
 
-        <button 
+        <button
           className={styles.mobileMenuButton}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
@@ -61,7 +61,7 @@ export function Header() {
           {navItems.map((item) => (
             <div key={item.label} className={styles.navItemWrapper}>
               {item.href && !item.href.startsWith('#') && !item.hasDropdown ? (
-                <Link 
+                <Link
                   to={item.href}
                   className={styles.navItem}
                   onClick={() => setMobileMenuOpen(false)}
@@ -70,37 +70,37 @@ export function Header() {
                 </Link>
               ) : (
                 <>
-              <button 
-                className={styles.navItem}
-                onClick={() => handleNavClick(item)}
-                onBlur={() => setTimeout(() => setOpenDropdown(null), 200)}
-              >
-              {item.label}
-              {item.hasDropdown ? (
-                  <svg className={styles.chevron} viewBox="0 0 8 9" aria-hidden>
-                    <path d="M0.588 2.12L4 5.53L7.412 2.12" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              ) : null}
-              </button>
-              {item.hasDropdown && item.dropdownItems && openDropdown === item.label && (
-                <div className={styles.dropdown}>
-                  {item.dropdownItems.map((dropdownItem) => (
+                  <button
+                    className={styles.navItem}
+                    onClick={() => handleNavClick(item)}
+                    onBlur={() => setTimeout(() => setOpenDropdown(null), 200)}
+                  >
+                    {item.label}
+                    {item.hasDropdown ? (
+                      <svg className={styles.chevron} viewBox="0 0 8 9" aria-hidden>
+                        <path d="M0.588 2.12L4 5.53L7.412 2.12" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ) : null}
+                  </button>
+                  {item.hasDropdown && item.dropdownItems && openDropdown === item.label && (
+                    <div className={styles.dropdown}>
+                      {item.dropdownItems.map((dropdownItem) => (
                         dropdownItem.href.startsWith('#') ? (
-                    <a 
-                      key={dropdownItem.label} 
-                      href={dropdownItem.href} 
-                      className={styles.dropdownItem}
-                      onClick={() => {
-                        setOpenDropdown(null)
-                        setMobileMenuOpen(false)
-                      }}
-                    >
-                      {dropdownItem.label}
-                    </a>
+                          <a
+                            key={dropdownItem.label}
+                            href={dropdownItem.href}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              setOpenDropdown(null)
+                              setMobileMenuOpen(false)
+                            }}
+                          >
+                            {dropdownItem.label}
+                          </a>
                         ) : (
-                          <Link 
-                            key={dropdownItem.label} 
-                            to={dropdownItem.href} 
+                          <Link
+                            key={dropdownItem.label}
+                            to={dropdownItem.href}
                             className={styles.dropdownItem}
                             onClick={() => {
                               setOpenDropdown(null)
@@ -110,8 +110,8 @@ export function Header() {
                             {dropdownItem.label}
                           </Link>
                         )
-                  ))}
-                </div>
+                      ))}
+                    </div>
                   )}
                 </>
               )}
@@ -124,7 +124,7 @@ export function Header() {
             Login
           </Button>
           <div className={styles.loanButtonWrapper}>
-            <button 
+            <button
               className={styles.ctaButton}
               onClick={() => setLoanDropdownOpen(!loanDropdownOpen)}
               onBlur={() => setTimeout(() => setLoanDropdownOpen(false), 200)}
@@ -133,8 +133,8 @@ export function Header() {
             </button>
             {loanDropdownOpen && (
               <div className={styles.dropdown}>
-                <Link 
-                  to="/apply-for-loan/federal-staff" 
+                <Link
+                  to="/federalloan"
                   className={styles.dropdownItem}
                   onClick={() => {
                     setLoanDropdownOpen(false)
@@ -143,8 +143,8 @@ export function Header() {
                 >
                   Federal Staff Loan
                 </Link>
-                <Link 
-                  to="/apply-for-loan/partnered-companies" 
+                <Link
+                  to="/companyloans"
                   className={styles.dropdownItem}
                   onClick={() => {
                     setLoanDropdownOpen(false)
@@ -153,8 +153,8 @@ export function Header() {
                 >
                   Partnered Companies Loan
                 </Link>
-                <Link 
-                  to="/apply-for-loan/paymyrent-saver" 
+                <Link
+                  to="/apply-for-loan/paymyrent-saver"
                   className={styles.dropdownItem}
                   onClick={() => {
                     setLoanDropdownOpen(false)

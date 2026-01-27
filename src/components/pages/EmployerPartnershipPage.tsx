@@ -20,25 +20,25 @@ export function EmployerPartnershipPage() {
     city: '',
     state: '',
     website: '',
-    
+
     // Section 2
     contactName: '',
     jobTitle: '',
     email: '',
     phone: '',
     linkedin: '',
-    
+
     // Section 3
     employeeCount: '',
-    
+
     // Section 4
     agreeDeductions: '',
     salaryDate: '',
-    
+
     // Section 5
     rentLoans: false,
     paydayLoans: false,
-    
+
     // Section 6
     confirmAccuracy: false,
     authorizeVerification: false,
@@ -67,10 +67,7 @@ export function EmployerPartnershipPage() {
     const errors: Record<string, string> = {}
 
     if (step === 1) {
-      // Validate website (optional but must be valid if provided)
-      if (formData.website && !validateUrl(formData.website)) {
-        errors.website = 'Invalid website format. Example: www.example.com'
-      }
+      // Relaxed website validation
     }
 
     if (step === 2) {
@@ -78,10 +75,7 @@ export function EmployerPartnershipPage() {
       if (formData.email && !validateEmail(formData.email)) {
         errors.email = 'Invalid email format. Example: name@company.com'
       }
-      // Validate LinkedIn (optional but must be valid if provided)
-      if (formData.linkedin && !validateUrl(formData.linkedin)) {
-        errors.linkedin = 'Invalid LinkedIn URL format. Example: https://linkedin.com/in/yourprofile'
-      }
+      // Relaxed LinkedIn validation
     }
 
     setFieldErrors(errors)
@@ -145,7 +139,7 @@ export function EmployerPartnershipPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     // Validate all steps before submitting
     if (!validateStep(1) || !validateStep(2)) {
       setError('Please fix the validation errors before submitting.')
@@ -182,7 +176,7 @@ export function EmployerPartnershipPage() {
         products_interested_in: products,
       }
 
-      const response = await fetch('https://api-prod.paymyrent.africa/api/employer/partnership', {
+      const response = await fetch('https://api-staging.paymyrent.africa/api/employer/partnership', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -250,8 +244,8 @@ export function EmployerPartnershipPage() {
             <h1 className={styles.pageTitle}>Employer Partnership Application</h1>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBar}>
-                <div 
-                  className={styles.progressFill} 
+                <div
+                  className={styles.progressFill}
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -269,7 +263,7 @@ export function EmployerPartnershipPage() {
                   Section 1: Company Information
                   <span className={styles.sectionSubtitle}>Purpose: Verify the employer is real and compliant.</span>
                 </h2>
-                
+
                 <div className={styles.formGroup}>
                   <label htmlFor="companyName" className={styles.label}>
                     Company Legal Name <span className={styles.hint}>(As registered with CAC)</span>
@@ -459,13 +453,13 @@ export function EmployerPartnershipPage() {
                 <div className={styles.formGroup}>
                   <label htmlFor="linkedin" className={styles.label}>LinkedIn Profile Link</label>
                   <input
-                    type="url"
+                    type="text"
                     id="linkedin"
                     name="linkedin"
                     value={formData.linkedin}
                     onChange={handleInputChange}
                     className={`${styles.input} ${fieldErrors.linkedin ? styles.inputError : ''}`}
-                    placeholder="https://linkedin.com/in/yourprofile"
+                    placeholder="e.g. linkedin.com/in/yourprofile"
                   />
                   {fieldErrors.linkedin && (
                     <span className={styles.fieldError}>{fieldErrors.linkedin}</span>

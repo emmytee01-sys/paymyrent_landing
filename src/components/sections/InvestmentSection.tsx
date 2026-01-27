@@ -9,6 +9,9 @@ interface InvestmentSectionProps {
   telegramLink?: string
   image?: string
   imageAlt?: string
+  singleButtonText?: string
+  singleButtonLink?: string
+  onSingleButtonClick?: () => void
 }
 
 export function InvestmentSection({
@@ -17,7 +20,10 @@ export function InvestmentSection({
   brochureLink,
   telegramLink,
   image = '/assets/investt-removebg-preview.png',
-  imageAlt = 'Investment illustration'
+  imageAlt = 'Investment illustration',
+  singleButtonText,
+  singleButtonLink,
+  onSingleButtonClick
 }: InvestmentSectionProps = {}) {
   const defaultBody = (
     'Co own profitable business in UK, US and Canada with as low as N25,000. Earn monthly profits In Pounds $ Dollars.'
@@ -36,30 +42,49 @@ export function InvestmentSection({
             {body ?? defaultBody}
           </p>
           <div className={styles.buttonContainer}>
-            {brochureLink && (
-              <a 
-                href={brochureLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={styles.buttonLink}
-              >
-                <Button className={styles.investButton}>Download the brochure</Button>
-              </a>
-            )}
-            {telegramLink && (
-              <a 
-                href={telegramLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={styles.buttonLink}
-              >
-                <Button className={styles.investButton}>Join Telegram community</Button>
-              </a>
-            )}
-            {!brochureLink && !telegramLink && (
+            {singleButtonText ? (
+              singleButtonLink ? (
+                <a 
+                  href={singleButtonLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.buttonLink}
+                >
+                  <Button className={styles.investButton}>{singleButtonText}</Button>
+                </a>
+              ) : (
+                <Button className={styles.investButton} onClick={onSingleButtonClick}>
+                  {singleButtonText}
+                </Button>
+              )
+            ) : (
               <>
-                <Button className={styles.investButton}>Download the brochure</Button>
-                <Button className={styles.investButton}>Join Telegram community</Button>
+                {brochureLink && (
+                  <a 
+                    href={brochureLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.buttonLink}
+                  >
+                    <Button className={styles.investButton}>Download the brochure</Button>
+                  </a>
+                )}
+                {telegramLink && (
+                  <a 
+                    href={telegramLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.buttonLink}
+                  >
+                    <Button className={styles.investButton}>Join Telegram community</Button>
+                  </a>
+                )}
+                {!brochureLink && !telegramLink && (
+                  <>
+                    <Button className={styles.investButton}>Download the brochure</Button>
+                    <Button className={styles.investButton}>Join Telegram community</Button>
+                  </>
+                )}
               </>
             )}
           </div>

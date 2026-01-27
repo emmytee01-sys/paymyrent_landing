@@ -18,25 +18,25 @@ export function EmployerPartnershipForm({ onClose }: EmployerPartnershipFormProp
     city: '',
     state: '',
     website: '',
-    
+
     // Section 2
     contactName: '',
     jobTitle: '',
     email: '',
     phone: '',
     linkedin: '',
-    
+
     // Section 3
     employeeCount: '',
-    
+
     // Section 4
     agreeDeductions: '',
     salaryDate: '',
-    
+
     // Section 5
     rentLoans: false,
     paydayLoans: false,
-    
+
     // Section 6
     confirmAccuracy: false,
     authorizeVerification: false,
@@ -90,7 +90,7 @@ export function EmployerPartnershipForm({ onClose }: EmployerPartnershipFormProp
             Section 1: Company Information
             <span className={styles.sectionSubtitle}>Purpose: Verify the employer is real and compliant.</span>
           </h3>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="companyName" className={styles.label}>
               Company Legal Name <span className={styles.hint}>(As registered with CAC)</span>
@@ -272,13 +272,13 @@ export function EmployerPartnershipForm({ onClose }: EmployerPartnershipFormProp
           <div className={styles.formGroup}>
             <label htmlFor="linkedin" className={styles.label}>LinkedIn Profile Link</label>
             <input
-              type="url"
+              type="text"
               id="linkedin"
               name="linkedin"
               value={formData.linkedin}
               onChange={handleInputChange}
               className={styles.input}
-              placeholder="https://linkedin.com/in/yourprofile"
+              placeholder="e.g. linkedin.com/in/yourprofile"
             />
           </div>
         </div>
