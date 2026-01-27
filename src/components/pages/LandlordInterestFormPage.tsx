@@ -168,7 +168,7 @@ export function LandlordInterestFormPage() {
 
       console.log('Submitting form data:', apiData)
 
-      const response = await fetch('https://api.paymyrent.africa/api/property-management-interest', {
+      const response = await fetch('https://api-prod.paymyrent.africa/api/property-management-interest', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

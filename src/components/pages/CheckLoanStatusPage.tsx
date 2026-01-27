@@ -32,7 +32,7 @@ export function CheckLoanStatusPage() {
     setLoanStatus(null)
 
     try {
-      const response = await fetch('https://api.paymyrent.africa/api/federal-staff-loan/check-status', {
+      const response = await fetch('https://api-prod.paymyrent.africa/api/federal-staff-loan/check-status', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
