@@ -176,7 +176,7 @@ export function EmployerPartnershipPage() {
         products_interested_in: products,
       }
 
-      const response = await fetch('https://api-staging.paymyrent.africa/api/employer/partnership', {
+      const response = await fetch('https://api.paymyrent.africa/api/employer/partnership', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

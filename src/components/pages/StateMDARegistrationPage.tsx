@@ -104,7 +104,7 @@ export function StateMDARegistrationPage() {
       console.log('Submitting form data:', apiData)
       console.log('JSON payload:', JSON.stringify(apiData, null, 2))
 
-      const response = await fetch('https://api-staging.paymyrent.africa/api/rent-support', {
+      const response = await fetch('https://api.paymyrent.africa/api/rent-support', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -193,7 +193,7 @@ export function FederalStaffLoanApplicationPage() {
       formDataToSend.append('loan_purpose', formData.purpose)
       if (formData.purposeOther) formDataToSend.append('loan_purpose_other', formData.purposeOther)
 
-      const response = await fetch('https://api-staging.paymyrent.africa/api/federal-staff-loan/apply', {
+      const response = await fetch('https://api.paymyrent.africa/api/federal-staff-loan/apply', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
