@@ -149,6 +149,12 @@ export function EmployerPartnershipPage() {
       if (formData.rentLoans) products.push('rent loans')
       if (formData.paydayLoans) products.push('payday loans')
 
+      // Format website URL before sending to API
+      let formattedWebsite = formData.website.trim()
+      if (formattedWebsite && !formattedWebsite.startsWith('http://') && !formattedWebsite.startsWith('https://')) {
+        formattedWebsite = `https://${formattedWebsite}`
+      }
+
       // Transform form data to API format
       const apiData = {
         company_legal_name: formData.companyName,
@@ -158,7 +164,7 @@ export function EmployerPartnershipPage() {
         company_address_street: formData.street,
         company_address_city: formData.city,
         company_address_state: formData.state || null,
-        website: formData.website || null,
+        website: formattedWebsite || null,
         contact_person_name: formData.contactName,
         job_title: formData.jobTitle,
         official_work_email: formData.email,
