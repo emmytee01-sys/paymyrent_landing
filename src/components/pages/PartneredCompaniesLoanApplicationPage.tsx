@@ -43,6 +43,8 @@ export function PartneredCompaniesLoanApplicationPage() {
     // Screen 6
     salaryAmount: '',
     bankStatement: null as File | null,
+    payslip1: null as File | null,
+    payslip2: null as File | null,
 
     // Screen 7 (Confirmation only)
   })
@@ -149,6 +151,12 @@ export function PartneredCompaniesLoanApplicationPage() {
       data.append('salary_amount', formData.salaryAmount.replace(/,/g, ''))
       if (formData.bankStatement) {
         data.append('bank_statement', formData.bankStatement)
+      }
+      if (formData.payslip1) {
+        data.append('payslip_1', formData.payslip1)
+      }
+      if (formData.payslip2) {
+        data.append('payslip_2', formData.payslip2)
       }
 
       const response = await fetch('https://api-prod.paymyrent.africa/api/house-rent-loan/application', {
@@ -386,6 +394,19 @@ export function PartneredCompaniesLoanApplicationPage() {
                 <div className={styles.formGroup}>
                   <label htmlFor="bankStatement" className={styles.label}>Upload 6 months salary bank statement (PDF)</label>
                   <input type="file" id="bankStatement" name="bankStatement" onChange={handleInputChange} className={styles.fileInput} accept=".pdf" required />
+                </div>
+                <div className={styles.formGroup}>
+                  <div className={styles.row}>
+                    <div className={styles.formGroup} style={{ flex: 1 }}>
+                      <label htmlFor="payslip1" className={styles.label}>Upload payslip 1</label>
+                      <input type="file" id="payslip1" name="payslip1" onChange={handleInputChange} className={styles.fileInput} accept="image/*,.pdf" required />
+                    </div>
+                    <div className={styles.formGroup} style={{ flex: 1 }}>
+                      <label htmlFor="payslip2" className={styles.label}>Upload payslip 2</label>
+                      <input type="file" id="payslip2" name="payslip2" onChange={handleInputChange} className={styles.fileInput} accept="image/*,.pdf" required />
+                    </div>
+                  </div>
+                  <p className={styles.hint} style={{ marginTop: '0.5rem', fontWeight: 500, color: '#4a5568' }}>Please upload your last 2 most recent payslips</p>
                 </div>
                 <div className={styles.formActions}>
                   <Button type="button" className={styles.prevButton} onClick={handlePrevious}>Back</Button>

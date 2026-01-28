@@ -533,7 +533,6 @@ export function FederalStaffLoanApplicationPage() {
 
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Upload Required <span className={styles.required}>*</span>:</label>
-                  <p className={styles.hint} style={{ marginBottom: '1.5rem' }}>Please upload your last 2 most recent payslips</p>
 
                   <div className={styles.uploadGrid}>
                     <div className={styles.uploadItem}>
@@ -596,6 +595,7 @@ export function FederalStaffLoanApplicationPage() {
                       />
                     </div>
                   </div>
+                  <p className={styles.hint} style={{ marginTop: '1rem', fontWeight: 500, color: '#4a5568' }}>Please upload your last 2 most recent payslips</p>
                 </div>
               </div>
             )}

@@ -192,7 +192,7 @@ export function EmployerPartnershipForm({ onClose }: EmployerPartnershipFormProp
           <div className={styles.formGroup}>
             <label htmlFor="website" className={styles.label}>Company Website</label>
             <input
-              type="url"
+              type="text"
               id="website"
               name="website"
               value={formData.website}

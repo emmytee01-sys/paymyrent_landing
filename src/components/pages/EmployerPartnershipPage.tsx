@@ -50,12 +50,6 @@ export function EmployerPartnershipPage() {
   const [error, setError] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
 
-  const validateUrl = (url: string): boolean => {
-    if (!url) return true // Optional field
-    // Accept format: www.example.com or example.com (with optional path)
-    const urlRegex = /^(www\.)?[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*(\.[a-zA-Z]{2,})(\/.*)?$/
-    return urlRegex.test(url)
-  }
 
   const validateEmail = (email: string): boolean => {
     if (!email) return true // Optional field
@@ -67,9 +61,7 @@ export function EmployerPartnershipPage() {
     const errors: Record<string, string> = {}
 
     if (step === 1) {
-      if (formData.website && !validateUrl(formData.website)) {
-        errors.website = 'Invalid website format. Example: www.example.com or example.com'
-      }
+      // Relaxed website validation - any format allowed
     }
 
     if (step === 2) {
@@ -367,17 +359,14 @@ export function EmployerPartnershipPage() {
                 <div className={styles.formGroup}>
                   <label htmlFor="website" className={styles.label}>Company Website</label>
                   <input
-                    type="url"
+                    type="text"
                     id="website"
                     name="website"
                     value={formData.website}
                     onChange={handleInputChange}
-                    className={`${styles.input} ${fieldErrors.website ? styles.inputError : ''}`}
+                    className={styles.input}
                     placeholder="www.example.com"
                   />
-                  {fieldErrors.website && (
-                    <span className={styles.fieldError}>{fieldErrors.website}</span>
-                  )}
                 </div>
               </div>
             )}
