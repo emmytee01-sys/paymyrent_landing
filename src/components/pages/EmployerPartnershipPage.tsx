@@ -67,7 +67,9 @@ export function EmployerPartnershipPage() {
     const errors: Record<string, string> = {}
 
     if (step === 1) {
-      // Relaxed website validation
+      if (formData.website && !validateUrl(formData.website)) {
+        errors.website = 'Invalid website format. Example: www.example.com or example.com'
+      }
     }
 
     if (step === 2) {
