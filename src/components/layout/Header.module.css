@@ -151,13 +151,19 @@
   background: rgba(61, 61, 61, 0.08);
 }
 
+.dropdownDivider {
+  height: 1px;
+  background: rgba(61, 61, 61, 0.1);
+  margin: 4px 0;
+}
+
 .actions {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.actions > a {
+.actions>a {
   text-decoration: none;
   display: inline-block;
 }
@@ -363,4 +369,3 @@
     padding: 1.25rem 1rem;
   }
 }
-

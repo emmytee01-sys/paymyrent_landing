@@ -59,7 +59,12 @@ export function Header() {
 
         <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ''}`}>
           {navItems.map((item) => (
-            <div key={item.label} className={styles.navItemWrapper}>
+            <div
+              key={item.label}
+              className={styles.navItemWrapper}
+              onMouseEnter={() => !mobileMenuOpen && item.hasDropdown && setOpenDropdown(item.label)}
+              onMouseLeave={() => !mobileMenuOpen && item.hasDropdown && setOpenDropdown(null)}
+            >
               {item.href && !item.href.startsWith('#') && !item.hasDropdown ? (
                 <Link
                   to={item.href}
@@ -73,7 +78,6 @@ export function Header() {
                   <button
                     className={styles.navItem}
                     onClick={() => handleNavClick(item)}
-                    onBlur={() => setTimeout(() => setOpenDropdown(null), 200)}
                   >
                     {item.label}
                     {item.hasDropdown ? (
@@ -123,13 +127,19 @@ export function Header() {
           <Button variant="secondary" className={styles.loginButton} disabled>
             Login
           </Button>
-          <div className={styles.loanButtonWrapper}>
+          <div
+            className={styles.loanButtonWrapper}
+            onMouseEnter={() => !mobileMenuOpen && setLoanDropdownOpen(true)}
+            onMouseLeave={() => !mobileMenuOpen && setLoanDropdownOpen(false)}
+          >
             <button
               className={styles.ctaButton}
               onClick={() => setLoanDropdownOpen(!loanDropdownOpen)}
-              onBlur={() => setTimeout(() => setLoanDropdownOpen(false), 200)}
             >
               Apply For Loan
+              <svg className={styles.chevron} viewBox="0 0 8 9" aria-hidden style={{ marginLeft: '8px', filter: 'brightness(0) invert(1)' }}>
+                <path d="M0.588 2.12L4 5.53L7.412 2.12" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
             {loanDropdownOpen && (
               <div className={styles.dropdown}>
@@ -142,6 +152,16 @@ export function Header() {
                   }}
                 >
                   Federal Staff Loan
+                </Link>
+                <Link
+                  to="/apply-for-loan/state-staff"
+                  className={styles.dropdownItem}
+                  onClick={() => {
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  State Staff Loan
                 </Link>
                 <Link
                   to="/companyloans"
@@ -162,6 +182,17 @@ export function Header() {
                   }}
                 >
                   Paymyrent Saver Loan
+                </Link>
+                <div className={styles.dropdownDivider} />
+                <Link
+                  to="/check-loan-status"
+                  className={styles.dropdownItem}
+                  onClick={() => {
+                    setLoanDropdownOpen(false)
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  Check Loan Status
                 </Link>
               </div>
             )}
