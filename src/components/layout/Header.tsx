@@ -154,16 +154,6 @@ export function Header() {
                   Federal Staff Loan
                 </Link>
                 <Link
-                  to="/apply-for-loan/state-staff"
-                  className={styles.dropdownItem}
-                  onClick={() => {
-                    setLoanDropdownOpen(false)
-                    setMobileMenuOpen(false)
-                  }}
-                >
-                  State Staff Loan
-                </Link>
-                <Link
                   to="/companyloans"
                   className={styles.dropdownItem}
                   onClick={() => {
@@ -182,17 +172,6 @@ export function Header() {
                   }}
                 >
                   Paymyrent Saver Loan
-                </Link>
-                <div className={styles.dropdownDivider} />
-                <Link
-                  to="/check-loan-status"
-                  className={styles.dropdownItem}
-                  onClick={() => {
-                    setLoanDropdownOpen(false)
-                    setMobileMenuOpen(false)
-                  }}
-                >
-                  Check Loan Status
                 </Link>
               </div>
             )}
