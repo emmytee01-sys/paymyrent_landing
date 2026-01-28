@@ -73,7 +73,7 @@ export function PartneredCompaniesLoanApplicationPage() {
     setError(null)
 
     try {
-      const response = await fetch('https://api-prod.paymyrent.africa/api/house-rent-loan/verify-employer-code', {
+      const response = await fetch('https://api-staging.paymyrent.africa/api/house-rent-loan/verify-employer-code', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ export function PartneredCompaniesLoanApplicationPage() {
         data.append('payslip_2', formData.payslip2)
       }
 
-      const response = await fetch('https://api-prod.paymyrent.africa/api/house-rent-loan/application', {
+      const response = await fetch('https://api-staging.paymyrent.africa/api/house-rent-loan/application', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
