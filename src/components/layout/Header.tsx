@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Container } from '../ui/Container'
 import { Button } from '../ui/Button'
@@ -21,6 +21,8 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [loanDropdownOpen, setLoanDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const loanDropdownRef = useRef<HTMLDivElement>(null)
+  const navDropdownRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
   const handleDropdownToggle = (label: string) => {
@@ -37,6 +39,22 @@ export function Header() {
       setMobileMenuOpen(false)
     }
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (loanDropdownRef.current && !loanDropdownRef.current.contains(event.target as Node)) {
+        setLoanDropdownOpen(false)
+      }
+      if (navDropdownRef.current && !navDropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <header className={styles.header}>
@@ -62,6 +80,7 @@ export function Header() {
             <div
               key={item.label}
               className={styles.navItemWrapper}
+              ref={item.hasDropdown ? navDropdownRef : null}
               onMouseEnter={() => !mobileMenuOpen && item.hasDropdown && setOpenDropdown(item.label)}
               onMouseLeave={() => !mobileMenuOpen && item.hasDropdown && setOpenDropdown(null)}
             >
@@ -129,8 +148,7 @@ export function Header() {
           </Button>
           <div
             className={styles.loanButtonWrapper}
-            onMouseEnter={() => !mobileMenuOpen && setLoanDropdownOpen(true)}
-            onMouseLeave={() => !mobileMenuOpen && setLoanDropdownOpen(false)}
+            ref={loanDropdownRef}
           >
             <button
               className={styles.ctaButton}
